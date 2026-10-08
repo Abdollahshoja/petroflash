@@ -1,0 +1,115 @@
+{
+  "chemicals_version": "1.5.2",
+  "selected_method": "HEOS",
+  "scope": "Availability of Tc, Pc and omega only",
+  "components": [
+    {
+      "name": "methane",
+      "cas_number": "74-82-8",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "ethane",
+      "cas_number": "74-84-0",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "propane",
+      "cas_number": "74-98-6",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "n-butane",
+      "cas_number": "106-97-8",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "isobutane",
+      "cas_number": "75-28-5",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "n-pentane",
+      "cas_number": "109-66-0",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "isopentane",
+      "cas_number": "78-78-4",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "n-hexane",
+      "cas_number": "110-54-3",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "nitrogen",
+      "cas_number": "7727-37-9",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "carbon dioxide",
+      "cas_number": "124-38-9",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "hydrogen sulfide",
+      "cas_number": "7783-06-4",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    },
+    {
+      "name": "water",
+      "cas_number": "7732-18-5",
+      "HEOS_available": {
+        "Tc": true,
+        "Pc": true,
+        "omega": true
+      }
+    }
+  ]
+}
