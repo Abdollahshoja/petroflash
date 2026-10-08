@@ -1,0 +1,115 @@
+{
+  "component": "methane",
+  "cas_number": "74-82-8",
+  "chemicals_version": "1.5.2",
+  "status": "candidate data; not approved database records",
+  "properties": {
+    "critical_temperature": {
+      "unit": "K",
+      "candidates": [
+        {
+          "method": "HEOS",
+          "value": 190.564
+        },
+        {
+          "method": "IUPAC",
+          "value": 190.564
+        },
+        {
+          "method": "CRC",
+          "value": 190.56
+        },
+        {
+          "method": "PSRK",
+          "value": 190.6
+        },
+        {
+          "method": "PD",
+          "value": 190.577777777778
+        },
+        {
+          "method": "WEBBOOK",
+          "value": 190.6
+        },
+        {
+          "method": "PINAMARTINES",
+          "value": 190.56
+        },
+        {
+          "method": "YAWS",
+          "value": 190.56
+        },
+        {
+          "method": "WILSON_JASPERSON",
+          "value": 191.15642
+        }
+      ]
+    },
+    "critical_pressure": {
+      "unit": "Pa",
+      "candidates": [
+        {
+          "method": "HEOS",
+          "value": 4599200.0
+        },
+        {
+          "method": "IUPAC",
+          "value": 4599000.0
+        },
+        {
+          "method": "CRC",
+          "value": 4600000.0
+        },
+        {
+          "method": "PSRK",
+          "value": 4600155.0
+        },
+        {
+          "method": "PD",
+          "value": 4604318.92037759
+        },
+        {
+          "method": "WEBBOOK",
+          "value": 4610000.0
+        },
+        {
+          "method": "PINAMARTINES",
+          "value": 4599000.0
+        },
+        {
+          "method": "YAWS",
+          "value": 4599000.0
+        },
+        {
+          "method": "WILSON_JASPERSON",
+          "value": 4664274.5
+        }
+      ]
+    },
+    "acentric_factor": {
+      "unit": "1",
+      "candidates": [
+        {
+          "method": "HEOS",
+          "value": 0.01142
+        },
+        {
+          "method": "PSRK",
+          "value": 0.008
+        },
+        {
+          "method": "PD",
+          "value": 0.0072
+        },
+        {
+          "method": "YAWS",
+          "value": 0.012
+        },
+        {
+          "method": "ACENTRIC_DEFINITION",
+          "value": 0.010587107
+        }
+      ]
+    }
+  }
+}
