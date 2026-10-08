@@ -95,3 +95,13 @@ class ComponentDatabase:
             raise ValueError("The same component was selected more than once.")
 
         return selected
+
+    @classmethod
+    def from_file(cls, path):
+        """Load the central dataset and validate its component index."""
+        from .database_io import read_components
+
+        dataset_version, components = read_components(path)
+        database = cls(components)
+        database.dataset_version = dataset_version
+        return database

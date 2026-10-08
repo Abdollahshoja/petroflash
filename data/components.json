@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "dataset_version": "0.1.0",
+  "description": "Initial selected methane data with provenance.",
+  "components": [
+    {
+      "name": "methane",
+      "cas_number": "74-82-8",
+      "formula": "CH4",
+      "critical_temperature": {
+        "value": 190.564,
+        "unit": "K",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Selected from the local methane data audit."
+      },
+      "critical_pressure": {
+        "value": 4599200.0,
+        "unit": "Pa",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Selected from the local methane data audit."
+      },
+      "acentric_factor": {
+        "value": 0.01142,
+        "unit": "1",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.acentric.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Selected from the local methane data audit."
+      },
+      "molar_mass": {
+        "value": 0.0160428,
+        "unit": "kg/mol",
+        "source": "CoolProp methane fluid documentation",
+        "reference": "https://coolprop.org/fluid_properties/fluids/Methane.html",
+        "method": "Tabulated reference molar mass",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Retrieved 2026-10-08. Uses the molar-mass convention reported by this source; not extracted from chemicals."
+      }
+    }
+  ]
+}
