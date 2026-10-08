@@ -1,11 +1,12 @@
-﻿"""Initial selected reference data.
+# Historical test fixture only. Do not use as operational fluid data.
+"""Initial selected reference data.
 
 This module provides the first real component.
 A general external-data repository will replace this small seed module.
 """
 
-from .components import Component
-from .properties import DataKind, PropertyRecord
+from petroflash.components import Component
+from petroflash.properties import DataKind, PropertyRecord
 
 
 def methane() -> Component:

@@ -1,4 +1,4 @@
-﻿"""Validate JSON loading without modifying the real database."""
+"""Validate JSON loading without modifying the real database."""
 
 import json
 import tempfile
@@ -8,7 +8,7 @@ from pathlib import Path
 
 from petroflash.database import ComponentDatabase
 from petroflash.properties import DataKind
-from petroflash.reference_data import methane
+from sample_data import methane
 
 
 class TestDatabaseIO(unittest.TestCase):

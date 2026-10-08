@@ -1,10 +1,10 @@
-﻿"""Tests for component lookup and invalid database inputs."""
+"""Tests for component lookup and invalid database inputs."""
 
 import unittest
 from dataclasses import replace
 
 from petroflash.database import ComponentDatabase
-from petroflash.reference_data import methane
+from sample_data import methane
 
 
 class TestComponentDatabase(unittest.TestCase):
