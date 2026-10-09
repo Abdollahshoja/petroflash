@@ -1,7 +1,8 @@
-﻿"""Interactive selection of feed components and mole percentages."""
+"""Interactive selection of feed components and mole percentages."""
 
 import argparse
 
+from .conditions import TPConditions
 from .database import ComponentDatabase
 from .mixture import Mixture
 
@@ -51,6 +52,38 @@ def read_mixture(database):
             print("Enter all percentages again; their sum must be 100.")
 
 
+def read_conditions():
+    """Read explicit units and positive absolute TP conditions."""
+    while True:
+        unit = input("Temperature unit [K/C]: ").strip().upper()
+        if unit not in ("K", "C"):
+            print("Choose K or C.")
+            continue
+        try:
+            value = float(input(f"Temperature [{unit}]: "))
+            temperature = TPConditions.from_units(
+                value, 1, temperature_unit=unit, pressure_unit="Pa"
+            ).temperature_k
+        except ValueError as error:
+            print(f"Temperature error: {error}")
+            continue
+        break
+
+    print("Pressure must be ABSOLUTE, not gauge pressure.")
+    while True:
+        unit = input("Absolute pressure unit [Pa/bar]: ").strip().lower()
+        if unit not in ("pa", "bar"):
+            print("Choose Pa or bar; gauge units are not accepted.")
+            continue
+        try:
+            value = float(input(f"Absolute pressure [{unit}]: "))
+            return TPConditions.from_units(
+                temperature, value, temperature_unit="K", pressure_unit=unit
+            )
+        except ValueError as error:
+            print(f"Pressure error: {error}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Select PetroFlash feed components and mole percentages."
@@ -69,6 +102,7 @@ def main():
 
     try:
         mixture = read_mixture(database)
+        conditions = read_conditions()
     except (EOFError, KeyboardInterrupt):
         print("\nInput cancelled.")
         return
@@ -82,7 +116,9 @@ def main():
     ):
         print(f"{component.name:<20} {percentage:>12.6f} {fraction:>16.8f}")
 
-    print("\nFeed composition is ready. Flash calculation is not implemented yet.")
+    print(f"\nTemperature: {conditions.temperature_k:.8g} K")
+    print(f"Absolute pressure: {conditions.pressure_pa:.8g} Pa")
+    print("Feed and TP conditions are ready. Flash calculation is not implemented yet.")
 
 
 if __name__ == "__main__":
