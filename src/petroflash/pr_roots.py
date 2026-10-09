@@ -80,8 +80,14 @@ def solve_pr_roots(*, A, B, max_iterations=200):
     # explicitly instead of spending iterations bisecting toward zero.
     points = sorted(set([-bound, *turns, bound] + ([0.0] if c0 == 0 else [])))
     values = [_evaluate(z, c2, c1, c0) for z in points]
-    for value, scale in values[1:-1]:
-        if value != 0 and abs(value)/scale <= 64*float_info.epsilon:
+    for turning_point in turns:
+        value, _ = _evaluate(turning_point, c2, c1, c0)
+        az = abs(turning_point)
+        local_scale = max(
+            float_info.min,
+            ((az + abs(c2))*az + abs(c1))*az + abs(c0)
+        )
+        if value != 0 and abs(value)/local_scale <= 64*float_info.epsilon:
             raise PRRootError('Nearly repeated roots are numerically ambiguous; '
                               'a specialized critical-region solver is required.')
     roots = [z for z, (v, _) in zip(points, values) if v == 0]
