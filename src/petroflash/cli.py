@@ -8,6 +8,7 @@ from .mixture import Mixture
 from .pr_fugacity import mixture_pr_log_fugacity
 from .pr_mixing import mixture_pr_parameters, zero_kij
 from .pr_roots import solve_pr_roots
+from .stability import search_pr_stability
 
 
 def read_mixture(database):
@@ -120,6 +121,36 @@ def print_pr_feed(mixture, conditions, *, kij):
     print("These results are feed-property diagnostics, not a flash result.")
 
 
+
+def print_stability_search(mixture, conditions, *, kij):
+    """Display local search outcome, convergence and negative witness."""
+    result = search_pr_stability(mixture, conditions, kij=kij)
+    print("\nMULTI-START TPD SEARCH (PR1976):")
+    print("Status:", result.status)
+    print("Reference Z:", result.reference_z)
+    print("TPD sign tolerance:", result.tpd_tolerance)
+    print("Smallest evaluated TPD:", result.minimum_tpd)
+    if result.witness_composition is not None:
+        print("Composition at smallest evaluated TPD:")
+        for c, value in zip(mixture.components, result.witness_composition):
+            print(f"  {c.name}: {value:.10g}")
+    print(f"{'Start':<30} {'Converged':>10} {'Iters':>7} {'Minimum TPD':>16}")
+    for record in result.starts:
+        value = 'not evaluated' if record.minimum_tpd is None else f'{record.minimum_tpd:.8g}'
+        print(f"{record.label:<30} {str(record.converged):>10} {record.iterations:>7} {value:>16}")
+        print("  Stationarity residual:", record.stationarity_residual)
+        if not record.converged:
+            print("  Reason:", record.reason)
+    if result.status == 'unstable':
+        print("A negative TPD witness was found: the selected feed reference is unstable.")
+    elif result.status == 'no_negative_tpd_found':
+        print("All starts converged and no negative TPD witness was found.")
+        print("This local search does not certify global phase stability.")
+    else:
+        print("INCONCLUSIVE: search failures or ambiguous reference roots prevent a conclusion.")
+    print("No equilibrium phase compositions or vapor fraction have been calculated.")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Read PetroFlash feed/TP inputs and optionally calculate PR feed properties."
@@ -128,6 +159,8 @@ def main():
                         help="Path to the component JSON database.")
     parser.add_argument("--pr", action="store_true",
                         help="Calculate PR1976 feed properties after explicit zero-kij confirmation.")
+    parser.add_argument("--stability", action="store_true",
+                        help="Run multi-start TPD search; includes PR diagnostics and zero-kij confirmation.")
     args = parser.parse_args()
     try:
         database = ComponentDatabase.from_file(args.database)
@@ -148,7 +181,7 @@ def main():
         print(f"{component.name:<20} {percentage:>12.6f} {fraction:>16.8f}")
     print(f"\nTemperature: {conditions.temperature_k:.8g} K")
     print(f"Absolute pressure: {conditions.pressure_pa:.8g} Pa")
-    if not args.pr:
+    if not (args.pr or args.stability):
         print("Feed and TP conditions are ready. Flash calculation is not implemented yet.")
         return
     try:
@@ -156,7 +189,10 @@ def main():
             print("PR calculation skipped. Supply validated interactions through the Python API.")
             return
         print("Model assumption for this run: ALL kij = 0; not validated pair data.")
-        print_pr_feed(mixture, conditions, kij=zero_kij(len(mixture.components)))
+        kij = zero_kij(len(mixture.components))
+        print_pr_feed(mixture, conditions, kij=kij)
+        if args.stability:
+            print_stability_search(mixture, conditions, kij=kij)
     except (EOFError, KeyboardInterrupt):
         print("\nInput cancelled.")
     except (TypeError, ValueError, ArithmeticError) as error:
