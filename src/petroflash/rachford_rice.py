@@ -21,13 +21,17 @@ def _numbers(values, name):
     return tuple(result)
 
 
-def solve_rachford_rice(z, k_values):
+def solve_rachford_rice(z, k_values, *, residual_tolerance=1e-12):
     """Return vapor fraction in [0, 1] for fixed K, without normalization.
 
+    residual_tolerance controls the absolute RR residual (default 1e-12).
     A missing bracket is NOT a thermodynamic single-phase classification.
     Raises ValueError for invalid input, degeneracy, or no physical root;
     raises RuntimeError if the residual tolerance is not reached.
     """
+    residual_tolerance = _numbers([residual_tolerance], "residual_tolerance")[0]
+    if residual_tolerance <= 0:
+        raise ValueError("residual_tolerance must be positive.")
     z = _numbers(z, "z")
     k_values = _numbers(k_values, "K")
     if not z or len(z) != len(k_values):
@@ -65,7 +69,7 @@ def solve_rachford_rice(z, k_values):
     for _ in range(100):
         beta = (lower + upper) / 2
         value = residual(beta)
-        if abs(value) <= 1e-12:
+        if abs(value) <= residual_tolerance:
             return beta
         if beta == lower or beta == upper:
             break

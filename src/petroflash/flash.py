@@ -7,6 +7,7 @@ No global stability certificate, multiphase model or critical-region guarantee.
 from dataclasses import dataclass
 from math import exp, fsum, isfinite, log
 import re
+from sys import float_info
 from types import SimpleNamespace
 
 from .pr_phase import evaluate_pr_phase
@@ -33,10 +34,29 @@ class FlashResult:
     iterations: int = 0
     phase_stability: tuple[StabilityResult, ...] = ()
     attempts: tuple[str, ...] = ()
+    gibbs_resolution_rt: float | None = None
 
 
 def _gibbs(x, ln_phi):
     return fsum(v*(log(v)+p) for v, p in zip(x, ln_phi) if v > 0)
+
+
+def _gibbs_assessment(z, x, y, beta, ref_phi, liquid_phi, vapor_phi):
+    """Return Gibbs change and an engineering estimate of numerical resolution.
+
+    This is NOT an interval-arithmetic error bound or global stability proof.
+    A 64-epsilon scale allowance covers cancellation in extensive Gibbs terms;
+    a composition-normalization allowance prevents accepting ill-resolved
+    small differences. Root, fugacity and local stability checks remain separate.
+    """
+    terms = [-(zi*(log(zi)+p)) for zi,p in zip(z,ref_phi) if zi>0]
+    terms += [(1-beta)*xi*(log(xi)+p) for xi,p in zip(x,liquid_phi) if xi>0]
+    terms += [beta*yi*(log(yi)+p) for yi,p in zip(y,vapor_phi) if yi>0]
+    delta = fsum(terms)
+    scale = max(1.0, fsum(abs(v) for v in terms))
+    normalization = max(abs(fsum(z)-1), abs(fsum(x)-1), abs(fsum(y)-1))
+    resolution = (64*float_info.epsilon+8*normalization)*scale
+    return delta, resolution
 
 
 def _logsumexp(values):
@@ -93,13 +113,12 @@ def flash_tp(mixture, conditions, *, kij, max_iterations=100,
     common = dict(a_t=tuple(q.a_t for q in pure), b=tuple(q.b for q in pure), kij=kk,
                   temperature_k=conditions.temperature_k, pressure_pa=conditions.pressure_pa)
     reference = evaluate_pr_phase(mole_fractions=z, **common).preferred_candidates[0]
-    g_feed = _gibbs(z, reference.ln_phi)
 
     def evaluate(logk, branch):
         k = tuple(exp(v) for v in logk)
         if not all(isfinite(v) and v > 0 for v in k):
             raise ArithmeticError('K values exceed the numerical range.')
-        beta = solve_rachford_rice(z, k)
+        beta = solve_rachford_rice(z, k, residual_tolerance=1e-14)
         if not 1e-10 < beta < 1-1e-10:
             raise ValueError('Phase fraction is at an endpoint; not an interior split.')
         x = tuple(zi/((1-beta)+beta*ki) for zi, ki in zip(z, k))
@@ -170,9 +189,19 @@ def flash_tp(mixture, conditions, *, kij, max_iterations=100,
                     raise ArithmeticError('A phase root is not Gibbs-preferred at its composition.')
                 material = max(abs(z[i]-(1-beta)*x[i]-beta*y[i]) for i in range(len(z)))
                 normalization = max(abs(fsum(x)-1), abs(fsum(y)-1))
-                gibbs_change = (1-beta)*_gibbs(x, l.ln_phi)+beta*_gibbs(y, v.ln_phi)-g_feed
-                if material > 1e-10 or normalization > 1e-10 or gibbs_change >= -1e-10:
-                    raise ArithmeticError('Mass balance, normalization or Gibbs-decrease check failed.')
+                gibbs_change, gibbs_resolution = _gibbs_assessment(
+                    z, x, y, beta, reference.ln_phi, l.ln_phi, v.ln_phi)
+                details = (f'beta={beta:.16g}; fugacity={norm:.6g}; '
+                    f'material={material:.6g}; normalization={normalization:.6g}; '
+                    f'dG_RT={gibbs_change:.16g}; Gibbs_resolution_RT={gibbs_resolution:.6g}')
+                if material > 1e-10:
+                    raise ArithmeticError('Component material balance failed: '+details)
+                if normalization > 1e-10:
+                    raise ArithmeticError('Phase normalization failed: '+details)
+                if gibbs_change >= -gibbs_resolution:
+                    reason = ('Gibbs increase detected' if gibbs_change > gibbs_resolution
+                              else 'Gibbs decrease is numerically unresolved')
+                    raise ArithmeticError(reason+': '+details)
                 if abs(l.z-v.z) < 1e-7:
                     raise ArithmeticError('Phase density ordering is ambiguous in this baseline solver.')
                 if l.z > v.z:
@@ -185,7 +214,7 @@ def flash_tp(mixture, conditions, *, kij, max_iterations=100,
                 return FlashResult('two_phase',
                     'Two-phase solution passed local checks; global stability is not certified.',
                     feed_search, beta, x, y, l.z, v.z, norm, material, normalization,
-                    gibbs_change, iteration, phases, tuple(attempts))
+                    gibbs_change, iteration, phases, tuple(attempts), gibbs_resolution)
             except (ValueError, ArithmeticError, RuntimeError) as error:
                 attempts.append(f'{label}, roots {branch}: {error}')
     return FlashResult('inconclusive',

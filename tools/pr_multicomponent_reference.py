@@ -3,6 +3,7 @@ Simultaneous bounded least squares for phase compositions and vapor fraction.
 Finite composition sampling is a diagnostic, not a global stability proof.
 """
 import numpy as np
+from math import fsum
 from scipy.optimize import least_squares, brentq
 from scipy.special import softmax, expit
 R = 8.31446261815324
@@ -96,10 +97,16 @@ class MulticomponentPRReference:
                 l,v=self.states(x)[0],self.states(y)[-1]
                 fug=float(max(abs(residual(sol.x)[:self.n])))
                 mass=float(max(abs((1-beta)*x+beta*y-z)))
-                dg=(1-beta)*l['g']+beta*v['g']-self.best(z)['g']
-                attempts.append(dict(fugacity_residual=fug,material_residual=mass,nfev=sol.nfev))
+                feed_g=self.best(z)['g']
+                dg=fsum([(1-beta)*l['g'],beta*v['g'],-feed_g])
+                scale=max(1.,(1-beta)*float(np.sum(np.abs(x*(np.log(x)+l['lnphi']))))
+                    +beta*float(np.sum(np.abs(y*(np.log(y)+v['lnphi']))))
+                    +float(np.sum(np.abs(z*(np.log(z)+self.best(z)['lnphi'])))))
+                normalization=max(abs(float(sum(x))-1),abs(float(sum(y))-1),abs(float(sum(z))-1))
+                resolution=(64*np.finfo(float).eps+8*normalization)*scale
+                attempts.append(dict(fugacity_residual=fug,material_residual=mass,nfev=sol.nfev, gibbs_change=dg, gibbs_resolution=resolution, beta=beta))
                 if (fug>1e-8 or mass>1e-10 or max(abs(x-y))<1e-6 or
-                    not 1e-9<beta<1-1e-9 or dg>=-1e-10 or abs(l['z']-v['z'])<1e-7):
+                    not 1e-9<beta<1-1e-9 or dg>=-resolution or abs(l['z']-v['z'])<1e-7):
                     continue
                 if l['g']-self.best(x)['g']>1e-8 or v['g']-self.best(y)['g']>1e-8:
                     continue
@@ -107,7 +114,7 @@ class MulticomponentPRReference:
                     x,y,l,v,beta=y,x,v,l,1-beta
                 accepted.append(dict(status='two_phase',beta=beta,liquid_composition=x.tolist(),
                     vapor_composition=y.tolist(),liquid_z=l['z'],vapor_z=v['z'],
-                    fugacity_residual=fug,material_residual=mass,gibbs_change=dg))
+                    fugacity_residual=fug,material_residual=mass,gibbs_change=dg,gibbs_resolution=resolution))
             except (ValueError,ArithmeticError,np.linalg.LinAlgError) as error:
                 attempts.append(dict(error=str(error)))
         if not accepted:
