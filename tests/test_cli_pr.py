@@ -36,7 +36,7 @@ class TestCLIPR(unittest.TestCase):
             output = self.invoke([])
             calculation.assert_not_called()
         self.assertIn('Validated overall feed composition', output)
-        self.assertIn('Flash calculation is not implemented yet', output)
+        self.assertIn('Use --pr, --stability or --flash', output)
 
     def test_pr_mode_retries_then_evaluates_real_engine(self):
         output = self.invoke(['--pr'], ['maybe', ' YES '])

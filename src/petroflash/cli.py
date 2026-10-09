@@ -9,6 +9,7 @@ from .pr_fugacity import mixture_pr_log_fugacity
 from .pr_mixing import mixture_pr_parameters, zero_kij
 from .pr_roots import solve_pr_roots
 from .stability import search_pr_stability
+from .flash import flash_tp
 
 
 def read_mixture(database):
@@ -117,7 +118,7 @@ def print_pr_feed(mixture, conditions, *, kij):
         for component, value in zip(mixture.components, result.ln_phi):
             print(f"{component.name:<20} {value:>16.10g}")
         print(f"g_residual/(RT) = {result.g_residual_rt:.12g}")
-    print("\nPhase stability has NOT been tested; no vapor fraction is calculated.")
+    print("\nFeed-property diagnostics alone do not determine phase stability or vapor fraction.")
     print("These results are feed-property diagnostics, not a flash result.")
 
 
@@ -151,6 +152,42 @@ def print_stability_search(mixture, conditions, *, kij):
     print("No equilibrium phase compositions or vapor fraction have been calculated.")
 
 
+
+def print_flash(mixture, conditions, *, kij):
+    """Display only validated phase split fields; incomplete results remain absent."""
+    result = flash_tp(mixture, conditions, kij=kij)
+    print("\nTP FLASH (PR1976, simple-hydrocarbon VLE scope):")
+    print("Status:", result.status)
+    print(result.message)
+    print("Feed stability search:", result.feed_stability.status)
+    print("Smallest feed TPD:", result.feed_stability.minimum_tpd)
+    if result.status == 'two_phase':
+        print(f"Vapor mole fraction beta: {result.beta:.12g}")
+        print(f"Liquid mole fraction: {1-result.beta:.12g}")
+        print(f"Z_liquid: {result.liquid_z:.12g}; Z_vapor: {result.vapor_z:.12g}")
+        print(f"{'Component':<20} {'Feed z':>14} {'Liquid x':>14} {'Vapor y':>14}")
+        for component, z, x, y in zip(mixture.components, mixture.mole_fractions,
+                                      result.liquid_composition, result.vapor_composition):
+            print(f"{component.name:<20} {z:14.9g} {x:14.9g} {y:14.9g}")
+        print("Iterations in successful attempt:", result.iterations)
+        print("Max |ln(f_liquid/f_vapor)|:", result.fugacity_residual)
+        print("Max component material-balance residual:", result.material_residual)
+        print("Max phase-normalization residual:", result.normalization_residual)
+        print("Gibbs change/(RT) relative to feed:", result.gibbs_change_rt)
+        print("Local post-flash phase searches:", tuple(s.status for s in result.phase_stability))
+        print("Local checks passed; global phase stability and experimental accuracy are not certified.")
+    elif result.status == 'single_phase_candidate':
+        print("Reference Z:", result.feed_stability.reference_z)
+        print("No split was found by the local search. No liquid/vapor label or beta is assigned.")
+    else:
+        print("No accepted phase compositions or vapor fraction are available.")
+    if result.attempts:
+        print("Unsuccessful attempts:")
+        for reason in result.attempts:
+            print("  ", reason)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Read PetroFlash feed/TP inputs and optionally calculate PR feed properties."
@@ -161,6 +198,8 @@ def main():
                         help="Calculate PR1976 feed properties after explicit zero-kij confirmation.")
     parser.add_argument("--stability", action="store_true",
                         help="Run multi-start TPD search; includes PR diagnostics and zero-kij confirmation.")
+    parser.add_argument("--flash", action="store_true",
+                        help="Run baseline hydrocarbon TP flash with pre/post local stability checks.")
     args = parser.parse_args()
     try:
         database = ComponentDatabase.from_file(args.database)
@@ -181,8 +220,8 @@ def main():
         print(f"{component.name:<20} {percentage:>12.6f} {fraction:>16.8f}")
     print(f"\nTemperature: {conditions.temperature_k:.8g} K")
     print(f"Absolute pressure: {conditions.pressure_pa:.8g} Pa")
-    if not (args.pr or args.stability):
-        print("Feed and TP conditions are ready. Flash calculation is not implemented yet.")
+    if not (args.pr or args.stability or args.flash):
+        print("Feed and TP conditions are ready. Use --pr, --stability or --flash to calculate.")
         return
     try:
         if not confirm_zero_kij():
@@ -190,9 +229,14 @@ def main():
             return
         print("Model assumption for this run: ALL kij = 0; not validated pair data.")
         kij = zero_kij(len(mixture.components))
-        print_pr_feed(mixture, conditions, kij=kij)
-        if args.stability:
-            print_stability_search(mixture, conditions, kij=kij)
+        if args.flash:
+            result = print_flash(mixture, conditions, kij=kij)
+            if result.status == "inconclusive":
+                parser.exit(1, "Flash result is inconclusive; no phase split accepted.\n")
+        else:
+            print_pr_feed(mixture, conditions, kij=kij)
+            if args.stability:
+                print_stability_search(mixture, conditions, kij=kij)
     except (EOFError, KeyboardInterrupt):
         print("\nInput cancelled.")
     except (TypeError, ValueError, ArithmeticError) as error:
