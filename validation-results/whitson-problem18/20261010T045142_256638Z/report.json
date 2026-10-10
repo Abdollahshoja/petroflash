@@ -1,0 +1,2326 @@
+{
+  "kind": "published_calculated_example_not_experimental_data",
+  "source": {
+    "title": "Whitson and Brule, Phase Behavior, Appendix B, Problem 18",
+    "tables": [
+      "B-28",
+      "B-29",
+      "B-30",
+      "B-32"
+    ],
+    "pdf_pages": [
+      15,
+      16,
+      17
+    ],
+    "sha256": "2cc4097446ddabf7e5b803148c3715832d8d788e05667dcbf9881f3b018a4cd8"
+  },
+  "case_file_sha256": "a0778c6308507777f69e57dca28eaf26af04d3ad2b9a5dbffd2ec92afebdb25c",
+  "python": "3.11.1 (tags/v3.11.1:a7a450f, Dec  6 2022, 19:58:39) [MSC v.1934 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "git_head": "757702d649d1a6fbb320afcb614946a0ec184063",
+  "git_status": "M src/petroflash/flash.py\n M src/petroflash/pr_pure.py\n M src/petroflash/stability.py\n M tools/pr_multicomponent_reference.py\n?? data/benchmarks/\n?? docs/whitson-problem18-benchmark.md\n?? petroflash-whitson-problem18-step.zip\n?? tests/test_whitson_alpha.py\n?? tools/benchmark_whitson_problem18.py",
+  "inputs": {
+    "schema_version": 1,
+    "kind": "published_calculated_example_not_experimental_data",
+    "source": {
+      "title": "Whitson and Brule, Phase Behavior, Appendix B, Problem 18",
+      "tables": [
+        "B-28",
+        "B-29",
+        "B-30",
+        "B-32"
+      ],
+      "pdf_pages": [
+        15,
+        16,
+        17
+      ],
+      "sha256": "2cc4097446ddabf7e5b803148c3715832d8d788e05667dcbf9881f3b018a4cd8"
+    },
+    "names": [
+      "methane",
+      "n-butane",
+      "n-decane"
+    ],
+    "formulas": [
+      "CH4",
+      "C4H10",
+      "C10H22"
+    ],
+    "feed": [
+      0.5,
+      0.42,
+      0.08
+    ],
+    "critical_temperature_rankine": [
+      343.0,
+      765.3,
+      1111.8
+    ],
+    "critical_pressure_psia": [
+      667.8,
+      550.7,
+      304.0
+    ],
+    "omega": [
+      0.0115,
+      0.1928,
+      0.4902
+    ],
+    "temperature_f": 280.0,
+    "alpha_model": "WHITSON_PROBLEM18",
+    "kij": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "cases": [
+      {
+        "pressure_psia": 500.0,
+        "beta": 0.853401,
+        "liquid_composition": [
+          0.08588,
+          0.46349,
+          0.45064
+        ],
+        "vapor_composition": [
+          0.57114,
+          0.41253,
+          0.01633
+        ],
+        "composition_printed_decimals": 5
+      },
+      {
+        "pressure_psia": 1500.0,
+        "beta": 0.566844,
+        "liquid_composition": [
+          0.330082,
+          0.513307,
+          0.156611
+        ],
+        "vapor_composition": [
+          0.629843,
+          0.348699,
+          0.021457
+        ],
+        "composition_printed_decimals": 6
+      }
+    ],
+    "notes": [
+      "Exact Fahrenheit conversion is used for the main comparison; F+460 is a separate sensitivity run.",
+      "Printed input properties are used as supplied; no tuning to printed output.",
+      "Volume translation is excluded; no shifted volume or density comparisons.",
+      "Eq.4.22 for omega>0.4 is specific to the explicit instruction in this problem.",
+      "A printed-output difference is retained even if the independent numerical comparison passes."
+    ]
+  },
+  "properties_si": [
+    {
+      "name": "methane",
+      "Tc_K": 190.55555555555554,
+      "Pc_Pa": 4604318.92037759,
+      "omega": 0.0115
+    },
+    {
+      "name": "n-butane",
+      "Tc_K": 425.1666666666667,
+      "Pc_Pa": 3796942.8413476176,
+      "omega": 0.1928
+    },
+    {
+      "name": "n-decane",
+      "Tc_K": 617.6666666666666,
+      "Pc_Pa": 2096006.217123072,
+      "omega": 0.4902
+    }
+  ],
+  "psi_to_pa": 6894.757293168,
+  "notes": [
+    "Exact Fahrenheit conversion is used for the main comparison; F+460 is a separate sensitivity run.",
+    "Printed input properties are used as supplied; no tuning to printed output.",
+    "Volume translation is excluded; no shifted volume or density comparisons.",
+    "Eq.4.22 for omega>0.4 is specific to the explicit instruction in this problem.",
+    "A printed-output difference is retained even if the independent numerical comparison passes."
+  ],
+  "cases": [
+    {
+      "published": {
+        "pressure_psia": 500.0,
+        "beta": 0.853401,
+        "liquid_composition": [
+          0.08588,
+          0.46349,
+          0.45064
+        ],
+        "vapor_composition": [
+          0.57114,
+          0.41253,
+          0.01633
+        ],
+        "composition_printed_decimals": 5
+      },
+      "temperature_k": 410.9277777777778,
+      "engine": {
+        "status": "two_phase",
+        "message": "Two-phase solution passed local checks; global stability is not certified.",
+        "feed_stability": {
+          "status": "unstable",
+          "reference_z": 0.7825476256325274,
+          "minimum_tpd": -0.8026324285908726,
+          "witness_composition": [
+            0.03220239494589929,
+            0.19397970706278056,
+            0.7738178979913203
+          ],
+          "starts": [
+            {
+              "label": "feed",
+              "converged": true,
+              "iterations": 1,
+              "minimum_tpd": 0.0,
+              "witness_composition": [
+                0.5,
+                0.42,
+                0.08
+              ],
+              "stationarity_residual": 0.0,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "Wilson vapor-like",
+              "converged": true,
+              "iterations": 63,
+              "minimum_tpd": -8.141112054035993e-17,
+              "witness_composition": [
+                0.5000000021638956,
+                0.41999999902110335,
+                0.07999999881500101
+              ],
+              "stationarity_residual": 7.699806016860246e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "Wilson liquid-like",
+              "converged": true,
+              "iterations": 30,
+              "minimum_tpd": -0.802632428590872,
+              "witness_composition": [
+                0.032202390194138605,
+                0.1939796959042877,
+                0.7738179139015737
+              ],
+              "stationarity_residual": 9.675584111690227e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in methane",
+              "converged": true,
+              "iterations": 62,
+              "minimum_tpd": 3.89749472097633e-18,
+              "witness_composition": [
+                0.5000000030415631,
+                0.41999999862406673,
+                0.07999999833437009
+              ],
+              "stationarity_residual": 8.009867086039131e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in n-butane",
+              "converged": true,
+              "iterations": 33,
+              "minimum_tpd": -0.8026324285908726,
+              "witness_composition": [
+                0.03220239494589929,
+                0.19397970706278056,
+                0.7738178979913203
+              ],
+              "stationarity_residual": 5.323143370539185e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in n-decane",
+              "converged": true,
+              "iterations": 29,
+              "minimum_tpd": -0.8026324285908722,
+              "witness_composition": [
+                0.032202394356524056,
+                0.19397970103171502,
+                0.7738179046117609
+              ],
+              "stationarity_residual": 7.172714422409854e-09,
+              "reason": "projected stationarity converged"
+            }
+          ],
+          "tpd_tolerance": 1e-08
+        },
+        "beta": 0.8534289109891589,
+        "liquid_composition": [
+          0.0858606055715373,
+          0.46342309237969903,
+          0.45071630204876123
+        ],
+        "vapor_composition": [
+          0.5711258562512433,
+          0.4125423548975695,
+          0.016331788851187523
+        ],
+        "liquid_z": 0.17441620922937423,
+        "vapor_z": 0.8672557430420811,
+        "fugacity_residual": 2.988870040354641e-09,
+        "material_residual": 5.551115123125783e-17,
+        "normalization_residual": 2.4424906541753444e-15,
+        "gibbs_change_rt": -0.057212330523384564,
+        "iterations": 10,
+        "phase_stability": [
+          {
+            "status": "no_negative_tpd_found",
+            "reference_z": 0.17441620922937423,
+            "minimum_tpd": -2.2599991897032994e-09,
+            "witness_composition": [
+              0.5711258585049359,
+              0.41254235294816477,
+              0.0163317885468993
+            ],
+            "starts": [
+              {
+                "label": "feed",
+                "converged": true,
+                "iterations": 1,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.0858606055715373,
+                  0.46342309237969903,
+                  0.45071630204876123
+                ],
+                "stationarity_residual": 0.0,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson vapor-like",
+                "converged": true,
+                "iterations": 38,
+                "minimum_tpd": -2.2599991897032994e-09,
+                "witness_composition": [
+                  0.5711258585049359,
+                  0.41254235294816477,
+                  0.0163317885468993
+                ],
+                "stationarity_residual": 7.849947746128472e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson liquid-like",
+                "converged": true,
+                "iterations": 36,
+                "minimum_tpd": 3.783326273449916e-15,
+                "witness_composition": [
+                  0.08586059342483317,
+                  0.4634230761190535,
+                  0.45071633045611326
+                ],
+                "stationarity_residual": 7.051114263359807e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in methane",
+                "converged": true,
+                "iterations": 39,
+                "minimum_tpd": -2.2599991806480945e-09,
+                "witness_composition": [
+                  0.5711258591585368,
+                  0.4125423523920859,
+                  0.016331788449377323
+                ],
+                "stationarity_residual": 6.364690429242873e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-butane",
+                "converged": true,
+                "iterations": 35,
+                "minimum_tpd": 3.141548435916987e-15,
+                "witness_composition": [
+                  0.08586060620590219,
+                  0.4634230932762219,
+                  0.4507163005178759
+                ],
+                "stationarity_residual": 6.418234355481641e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-decane",
+                "converged": true,
+                "iterations": 35,
+                "minimum_tpd": 2.8604631732924184e-15,
+                "witness_composition": [
+                  0.08586060431487032,
+                  0.4634230906596746,
+                  0.4507163050254552
+                ],
+                "stationarity_residual": 7.196628446329877e-09,
+                "reason": "projected stationarity converged"
+              }
+            ],
+            "tpd_tolerance": 1e-08
+          },
+          {
+            "status": "no_negative_tpd_found",
+            "reference_z": 0.8672557430420811,
+            "minimum_tpd": -3.841761143153103e-16,
+            "witness_composition": [
+              0.5711258573296957,
+              0.41254235398218114,
+              0.016331788688123173
+            ],
+            "starts": [
+              {
+                "label": "feed",
+                "converged": true,
+                "iterations": 1,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.5711258562512433,
+                  0.4125423548975695,
+                  0.016331788851187523
+                ],
+                "stationarity_residual": 0.0,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson vapor-like",
+                "converged": true,
+                "iterations": 40,
+                "minimum_tpd": -3.296145752160574e-16,
+                "witness_composition": [
+                  0.5711258586007915,
+                  0.4125423529036953,
+                  0.016331788495513245
+                ],
+                "stationarity_residual": 6.232490785105658e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson liquid-like",
+                "converged": true,
+                "iterations": 34,
+                "minimum_tpd": 1.1597739942580785e-09,
+                "witness_composition": [
+                  0.08586060461976429,
+                  0.4634230912572409,
+                  0.45071630412299485
+                ],
+                "stationarity_residual": 7.89635953687911e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in methane",
+                "converged": true,
+                "iterations": 39,
+                "minimum_tpd": -3.841761143153103e-16,
+                "witness_composition": [
+                  0.5711258573296957,
+                  0.41254235398218114,
+                  0.016331788688123173
+                ],
+                "stationarity_residual": 8.130617643897278e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-butane",
+                "converged": true,
+                "iterations": 40,
+                "minimum_tpd": -3.078768729348272e-16,
+                "witness_composition": [
+                  0.5711258553400244,
+                  0.4125423556710136,
+                  0.016331788988962016
+                ],
+                "stationarity_residual": 6.869598495416852e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-decane",
+                "converged": true,
+                "iterations": 34,
+                "minimum_tpd": 1.159773417611271e-09,
+                "witness_composition": [
+                  0.08586060444655991,
+                  0.46342309093305617,
+                  0.45071630462038387
+                ],
+                "stationarity_residual": 9.61459288642151e-09,
+                "reason": "projected stationarity converged"
+              }
+            ],
+            "tpd_tolerance": 1e-08
+          }
+        ],
+        "attempts": [],
+        "gibbs_resolution_rt": 7.797709686591109e-14,
+        "alpha_model": "WHITSON_PROBLEM18"
+      },
+      "reference": {
+        "status": "two_phase",
+        "beta": 0.8534289113776067,
+        "liquid_composition": [
+          0.08586060524888979,
+          0.46342309181023633,
+          0.4507163029408739
+        ],
+        "vapor_composition": [
+          0.571125856085782,
+          0.41254235501853015,
+          0.016331788895687815
+        ],
+        "liquid_z": 0.17441620931576188,
+        "vapor_z": 0.8672557429496452,
+        "fugacity_residual": 2.4424906541753444e-15,
+        "material_residual": 4.163336342344337e-17,
+        "gibbs_change": -0.05721233052338437,
+        "gibbs_resolution": 3.488449070317075e-14,
+        "liquid_tpd_sample": {
+          "minimum_tpd": 0.0,
+          "witness_composition": [
+            0.08586060524888979,
+            0.46342309181023633,
+            0.4507163029408739
+          ],
+          "samples": 263
+        },
+        "vapor_tpd_sample": {
+          "minimum_tpd": 0.0,
+          "witness_composition": [
+            0.571125856085782,
+            0.41254235501853015,
+            0.016331788895687815
+          ],
+          "samples": 263
+        },
+        "attempts": [
+          {
+            "fugacity_residual": 2.7755575615628914e-15,
+            "material_residual": 5.551115123125783e-17,
+            "nfev": 6,
+            "gibbs_change": -0.0572123305233842,
+            "gibbs_resolution": 3.4884490703170755e-14,
+            "beta": 0.8534289113776068
+          },
+          {
+            "fugacity_residual": 1.5543122344752192e-15,
+            "material_residual": 1.1102230246251565e-16,
+            "nfev": 7,
+            "gibbs_change": -0.0572123305233837,
+            "gibbs_resolution": 3.488449070317074e-14,
+            "beta": 0.8534289113776073
+          },
+          {
+            "fugacity_residual": 2.4424906541753444e-15,
+            "material_residual": 5.551115123125783e-17,
+            "nfev": 6,
+            "gibbs_change": -0.0572123305233842,
+            "gibbs_resolution": 3.488449070317075e-14,
+            "beta": 0.8534289113776071
+          },
+          {
+            "fugacity_residual": 2.4424906541753444e-15,
+            "material_residual": 4.163336342344337e-17,
+            "nfev": 7,
+            "gibbs_change": -0.05721233052338437,
+            "gibbs_resolution": 3.488449070317075e-14,
+            "beta": 0.8534289113776067
+          }
+        ]
+      },
+      "pure_parameters": [
+        {
+          "m": 0.39234029307999996,
+          "alpha": 0.6661681358425662,
+          "a_c": 0.2492817119119853,
+          "a_t": 0.16606353332405088,
+          "b": 2.677133319912878e-05,
+          "A": 0.04904151659099873,
+          "B": 0.027012159283791894
+        },
+        {
+          "m": 0.6619543049472,
+          "alpha": 1.0224826905759914,
+          "a_c": 1.504862926994206,
+          "a_t": 1.5386962945410974,
+          "b": 7.243340993695507e-05,
+          "A": 0.45440439780355235,
+          "B": 0.073084997005263
+        },
+        {
+          "m": 1.0700059423145296,
+          "alpha": 1.433412169590973,
+          "a_c": 5.75345007497757,
+          "a_t": 8.247065354606944,
+          "b": 0.0001906230351185216,
+          "A": 2.435505160701234,
+          "B": 0.19233781707774378
+        }
+      ],
+      "numerical_verdict": "PASS",
+      "independent_differences": {
+        "beta": 3.8844782945801626e-10,
+        "liquid_z": 8.63876470358349e-11,
+        "vapor_z": 9.243583676266098e-11,
+        "liquid_composition": 8.921126615213382e-10,
+        "vapor_composition": 1.6546131131889297e-10
+      },
+      "printed_output_verdict": "BOOK_DIFFERENCE",
+      "printed_output_differences": {
+        "beta": 2.791098915888579e-05,
+        "liquid_composition": 7.630204876124536e-05,
+        "vapor_composition": 1.4143748756634267e-05
+      },
+      "printed_precision_limits": {
+        "beta": 5e-07,
+        "composition": 5e-06
+      },
+      "sensitivities": [
+        {
+          "label": "book_step_temperature_F_plus_460",
+          "temperature_k": 411.1111111111111,
+          "alpha_model": "WHITSON_PROBLEM18",
+          "result": {
+            "status": "two_phase",
+            "message": "Two-phase solution passed local checks; global stability is not certified.",
+            "feed_stability": {
+              "status": "unstable",
+              "reference_z": 0.7829353742032668,
+              "minimum_tpd": -0.7996987904834588,
+              "witness_composition": [
+                0.03228966246372628,
+                0.19424903966532775,
+                0.773461297870946
+              ],
+              "starts": [
+                {
+                  "label": "feed",
+                  "converged": true,
+                  "iterations": 1,
+                  "minimum_tpd": 0.0,
+                  "witness_composition": [
+                    0.5,
+                    0.42,
+                    0.08
+                  ],
+                  "stationarity_residual": 0.0,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson vapor-like",
+                  "converged": true,
+                  "iterations": 62,
+                  "minimum_tpd": 3.44929865202917e-17,
+                  "witness_composition": [
+                    0.5000000037686395,
+                    0.4199999982951484,
+                    0.07999999793621212
+                  ],
+                  "stationarity_residual": 9.940240207317382e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson liquid-like",
+                  "converged": true,
+                  "iterations": 30,
+                  "minimum_tpd": -0.799698790483458,
+                  "witness_composition": [
+                    0.03228966116579286,
+                    0.19424903611298575,
+                    0.7734613027212214
+                  ],
+                  "stationarity_residual": 9.70129343524917e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in methane",
+                  "converged": true,
+                  "iterations": 62,
+                  "minimum_tpd": 1.0117370459420694e-17,
+                  "witness_composition": [
+                    0.5000000028999056,
+                    0.41999999868814497,
+                    0.07999999841194942
+                  ],
+                  "stationarity_residual": 7.648849955031209e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-butane",
+                  "converged": true,
+                  "iterations": 33,
+                  "minimum_tpd": -0.7996987904834588,
+                  "witness_composition": [
+                    0.03228966246372628,
+                    0.19424903966532775,
+                    0.773461297870946
+                  ],
+                  "stationarity_residual": 5.3693627322104476e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-decane",
+                  "converged": true,
+                  "iterations": 29,
+                  "minimum_tpd": -0.7996987904834559,
+                  "witness_composition": [
+                    0.03228966166755146,
+                    0.1942490361325754,
+                    0.7734613021998731
+                  ],
+                  "stationarity_residual": 7.191816475682344e-09,
+                  "reason": "projected stationarity converged"
+                }
+              ],
+              "tpd_tolerance": 1e-08
+            },
+            "beta": 0.8538733405586285,
+            "liquid_composition": [
+              0.08580896280915784,
+              0.46274081672386175,
+              0.45145022046698186
+            ],
+            "vapor_composition": [
+              0.5708821200526741,
+              0.4126855981174353,
+              0.01643228182989027
+            ],
+            "liquid_z": 0.1744829037204949,
+            "vapor_z": 0.8673164218596066,
+            "fugacity_residual": 3.0446922760773987e-09,
+            "material_residual": 1.214306433183765e-17,
+            "normalization_residual": 1.3322676295501878e-15,
+            "gibbs_change_rt": -0.0568576746942509,
+            "iterations": 10,
+            "phase_stability": [
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.1744829037204949,
+                "minimum_tpd": -2.301451402554884e-09,
+                "witness_composition": [
+                  0.5708821229726938,
+                  0.4126855956026922,
+                  0.016432281424613913
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.08580896280915784,
+                      0.46274081672386175,
+                      0.45145022046698186
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 38,
+                    "minimum_tpd": -2.301451349749589e-09,
+                    "witness_composition": [
+                      0.5708821235267986,
+                      0.41268559513417796,
+                      0.016432281339023514
+                    ],
+                    "stationarity_residual": 7.857016447511182e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 36,
+                    "minimum_tpd": -1.7311289144416872e-15,
+                    "witness_composition": [
+                      0.08580896157916691,
+                      0.462740815082829,
+                      0.4514502233380041
+                    ],
+                    "stationarity_residual": 7.049344581175193e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 39,
+                    "minimum_tpd": -2.301451402554884e-09,
+                    "witness_composition": [
+                      0.5708821229726938,
+                      0.4126855956026922,
+                      0.016432281424613913
+                    ],
+                    "stationarity_residual": 6.368486408630144e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 35,
+                    "minimum_tpd": -2.064373226634823e-15,
+                    "witness_composition": [
+                      0.08580896479424817,
+                      0.46274081958117924,
+                      0.4514502156245726
+                    ],
+                    "stationarity_residual": 6.437655937118795e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 35,
+                    "minimum_tpd": -2.3867768523794075e-15,
+                    "witness_composition": [
+                      0.08580896058627907,
+                      0.4627408136653194,
+                      0.4514502257484016
+                    ],
+                    "stationarity_residual": 7.1958415652513455e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              },
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.8673164218596066,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.5708821200526741,
+                  0.4126855981174353,
+                  0.01643228182989027
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.5708821200526741,
+                      0.4126855981174353,
+                      0.01643228182989027
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 40,
+                    "minimum_tpd": 3.1797304575367787e-16,
+                    "witness_composition": [
+                      0.5708821208793285,
+                      0.41268559741661925,
+                      0.016432281704052223
+                    ],
+                    "stationarity_residual": 6.237092086252726e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 34,
+                    "minimum_tpd": 1.1786559849541156e-09,
+                    "witness_composition": [
+                      0.08580896125326734,
+                      0.462740814802503,
+                      0.45145022394422957
+                    ],
+                    "stationarity_residual": 7.89875965769242e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 39,
+                    "minimum_tpd": 2.3181368075117647e-16,
+                    "witness_composition": [
+                      0.5708821288052657,
+                      0.4126855906931813,
+                      0.016432280501552942
+                    ],
+                    "stationarity_residual": 8.13603083467691e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 40,
+                    "minimum_tpd": 2.4492645318026007e-16,
+                    "witness_composition": [
+                      0.5708821191429742,
+                      0.41268559888884504,
+                      0.016432281968180723
+                    ],
+                    "stationarity_residual": 6.852628385884667e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 34,
+                    "minimum_tpd": 1.1786558766353676e-09,
+                    "witness_composition": [
+                      0.08580895740382771,
+                      0.46274080895201597,
+                      0.45145023364415643
+                    ],
+                    "stationarity_residual": 9.609414914082813e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              }
+            ],
+            "attempts": [],
+            "gibbs_resolution_rt": 5.743124792118991e-14,
+            "alpha_model": "WHITSON_PROBLEM18"
+          }
+        },
+        {
+          "label": "original_PR1976_exact_temperature",
+          "temperature_k": 410.9277777777778,
+          "alpha_model": "PR1976",
+          "result": {
+            "status": "two_phase",
+            "message": "Two-phase solution passed local checks; global stability is not certified.",
+            "feed_stability": {
+              "status": "unstable",
+              "reference_z": 0.7826679254798159,
+              "minimum_tpd": -0.7972510458687322,
+              "witness_composition": [
+                0.03243198914251177,
+                0.19514366882324455,
+                0.7724243420342436
+              ],
+              "starts": [
+                {
+                  "label": "feed",
+                  "converged": true,
+                  "iterations": 1,
+                  "minimum_tpd": 0.0,
+                  "witness_composition": [
+                    0.5,
+                    0.42,
+                    0.08
+                  ],
+                  "stationarity_residual": 0.0,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson vapor-like",
+                  "converged": true,
+                  "iterations": 63,
+                  "minimum_tpd": -2.9105578629478226e-17,
+                  "witness_composition": [
+                    0.5000000051756625,
+                    0.4199999976565862,
+                    0.07999999716775133
+                  ],
+                  "stationarity_residual": 7.459479874704286e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson liquid-like",
+                  "converged": true,
+                  "iterations": 30,
+                  "minimum_tpd": -0.7972510458687322,
+                  "witness_composition": [
+                    0.03243198914251177,
+                    0.19514366882324455,
+                    0.7724243420342436
+                  ],
+                  "stationarity_residual": 9.755994789806266e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in methane",
+                  "converged": true,
+                  "iterations": 62,
+                  "minimum_tpd": -4.234280955825535e-17,
+                  "witness_composition": [
+                    0.500000003982958,
+                    0.4199999981966137,
+                    0.07999999782042833
+                  ],
+                  "stationarity_residual": 7.760989619716635e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-butane",
+                  "converged": true,
+                  "iterations": 33,
+                  "minimum_tpd": -0.7972510458687315,
+                  "witness_composition": [
+                    0.03243199520849878,
+                    0.19514368742031662,
+                    0.7724243173711847
+                  ],
+                  "stationarity_residual": 5.343936626545087e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-decane",
+                  "converged": true,
+                  "iterations": 29,
+                  "minimum_tpd": -0.7972510458687322,
+                  "witness_composition": [
+                    0.032431990245374236,
+                    0.19514367022285184,
+                    0.772424339531774
+                  ],
+                  "stationarity_residual": 7.2095553971252e-09,
+                  "reason": "projected stationarity converged"
+                }
+              ],
+              "tpd_tolerance": 1e-08
+            },
+            "beta": 0.8536025606953785,
+            "liquid_composition": [
+              0.0859780236076527,
+              0.46352370938580795,
+              0.4504982670065453
+            ],
+            "vapor_composition": [
+              0.5710070001550854,
+              0.4125354492869256,
+              0.016457550557987907
+            ],
+            "liquid_z": 0.17448077339435514,
+            "vapor_z": 0.8671425780251012,
+            "fugacity_residual": 3.0109017501445123e-09,
+            "material_residual": 1.734723475976807e-18,
+            "normalization_residual": 5.995204332975845e-15,
+            "gibbs_change_rt": -0.056766905494061416,
+            "iterations": 10,
+            "phase_stability": [
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.17448077339435514,
+                "minimum_tpd": -2.2773836117666183e-09,
+                "witness_composition": [
+                  0.5710070020977743,
+                  0.41253544760194727,
+                  0.016457550300278373
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.0859780236076527,
+                      0.46352370938580795,
+                      0.4504982670065453
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 38,
+                    "minimum_tpd": -2.2773835703093315e-09,
+                    "witness_composition": [
+                      0.571007002432546,
+                      0.4125354473187938,
+                      0.016457550248660188
+                    ],
+                    "stationarity_residual": 7.928291223697054e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 36,
+                    "minimum_tpd": -8.041013363498822e-15,
+                    "witness_composition": [
+                      0.0859780214238831,
+                      0.46352370648771524,
+                      0.4504982720884016
+                    ],
+                    "stationarity_residual": 7.047069959092523e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 39,
+                    "minimum_tpd": -2.2773836117666183e-09,
+                    "witness_composition": [
+                      0.5710070020977743,
+                      0.41253544760194727,
+                      0.016457550300278373
+                    ],
+                    "stationarity_residual": 6.413698919419062e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 35,
+                    "minimum_tpd": -8.327043867512897e-15,
+                    "witness_composition": [
+                      0.08597802423999362,
+                      0.46352371027520156,
+                      0.4504982654848049
+                    ],
+                    "stationarity_residual": 6.389281045001364e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 35,
+                    "minimum_tpd": -7.27217550230045e-15,
+                    "witness_composition": [
+                      0.08597801966945044,
+                      0.4635237039738381,
+                      0.4504982763567115
+                    ],
+                    "stationarity_residual": 7.189111881885467e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              },
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.8671425780251012,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.5710070001550854,
+                  0.4125354492869256,
+                  0.016457550557987907
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.5710070001550854,
+                      0.4125354492869256,
+                      0.016457550557987907
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 40,
+                    "minimum_tpd": 1.0233892371033852e-15,
+                    "witness_composition": [
+                      0.5710070041594546,
+                      0.41253544589235186,
+                      0.01645754994819351
+                    ],
+                    "stationarity_residual": 6.2883495918100545e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 34,
+                    "minimum_tpd": 1.1773068788339153e-09,
+                    "witness_composition": [
+                      0.08597802097471725,
+                      0.4635237060608742,
+                      0.45049827296440864
+                    ],
+                    "stationarity_residual": 7.929537915181124e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 39,
+                    "minimum_tpd": 9.408579935813011e-16,
+                    "witness_composition": [
+                      0.5710070012445921,
+                      0.4125354483631564,
+                      0.016457550392251347
+                    ],
+                    "stationarity_residual": 8.197220733312648e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 40,
+                    "minimum_tpd": 9.849503832187745e-16,
+                    "witness_composition": [
+                      0.5710069986022697,
+                      0.41253545060360985,
+                      0.0164575507941204
+                    ],
+                    "stationarity_residual": 6.926001811900909e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 34,
+                    "minimum_tpd": 1.1773072107228797e-09,
+                    "witness_composition": [
+                      0.08597802175379433,
+                      0.46352370689612266,
+                      0.4504982713500831
+                    ],
+                    "stationarity_residual": 9.598908540289593e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              }
+            ],
+            "attempts": [],
+            "gibbs_resolution_rt": 1.4360188858936692e-13,
+            "alpha_model": "PR1976"
+          }
+        }
+      ]
+    },
+    {
+      "published": {
+        "pressure_psia": 1500.0,
+        "beta": 0.566844,
+        "liquid_composition": [
+          0.330082,
+          0.513307,
+          0.156611
+        ],
+        "vapor_composition": [
+          0.629843,
+          0.348699,
+          0.021457
+        ],
+        "composition_printed_decimals": 6
+      },
+      "temperature_k": 410.9277777777778,
+      "engine": {
+        "status": "two_phase",
+        "message": "Two-phase solution passed local checks; global stability is not certified.",
+        "feed_stability": {
+          "status": "unstable",
+          "reference_z": 0.5328919374173733,
+          "minimum_tpd": -0.016685598552953276,
+          "witness_composition": [
+            0.31859243752110455,
+            0.476739412821162,
+            0.20466814965773336
+          ],
+          "starts": [
+            {
+              "label": "feed",
+              "converged": true,
+              "iterations": 1,
+              "minimum_tpd": 0.0,
+              "witness_composition": [
+                0.5,
+                0.42,
+                0.08
+              ],
+              "stationarity_residual": 0.0,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "Wilson vapor-like",
+              "converged": true,
+              "iterations": 82,
+              "minimum_tpd": -0.011698157953967394,
+              "witness_composition": [
+                0.6690269719052521,
+                0.30930483923423907,
+                0.02166818886050882
+              ],
+              "stationarity_residual": 8.969230969047004e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "Wilson liquid-like",
+              "converged": true,
+              "iterations": 68,
+              "minimum_tpd": -0.016685598552953276,
+              "witness_composition": [
+                0.31859243752110455,
+                0.476739412821162,
+                0.20466814965773336
+              ],
+              "stationarity_residual": 7.757797636925856e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in methane",
+              "converged": true,
+              "iterations": 81,
+              "minimum_tpd": -0.01169815795396725,
+              "witness_composition": [
+                0.6690269781525932,
+                0.3093048342986645,
+                0.021668187548742217
+              ],
+              "stationarity_residual": 9.65639148503561e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in n-butane",
+              "converged": true,
+              "iterations": 62,
+              "minimum_tpd": -0.016685598552952936,
+              "witness_composition": [
+                0.3185924453839754,
+                0.47673941184275553,
+                0.20466814277326897
+              ],
+              "stationarity_residual": 7.928610538943115e-09,
+              "reason": "projected stationarity converged"
+            },
+            {
+              "label": "rich in n-decane",
+              "converged": true,
+              "iterations": 67,
+              "minimum_tpd": -0.016685598552953117,
+              "witness_composition": [
+                0.31859243271532,
+                0.47673941341916404,
+                0.20466815386551598
+              ],
+              "stationarity_residual": 7.82129932694331e-09,
+              "reason": "projected stationarity converged"
+            }
+          ],
+          "tpd_tolerance": 1e-08
+        },
+        "beta": 0.5669826998141048,
+        "liquid_composition": [
+          0.3300240351017723,
+          0.5133226134031698,
+          0.15665335149505724
+        ],
+        "vapor_composition": [
+          0.6298144254504678,
+          0.3487274442141146,
+          0.02145813033541798
+        ],
+        "liquid_z": 0.4283303828441459,
+        "vapor_z": 0.7287193854385714,
+        "fugacity_residual": 7.864885187558457e-09,
+        "material_residual": 8.326672684688674e-17,
+        "normalization_residual": 6.661338147750939e-16,
+        "gibbs_change_rt": -0.010275338789174963,
+        "iterations": 39,
+        "phase_stability": [
+          {
+            "status": "no_negative_tpd_found",
+            "reference_z": 0.4283303828441459,
+            "minimum_tpd": 0.0,
+            "witness_composition": [
+              0.3300240351017723,
+              0.5133226134031698,
+              0.15665335149505724
+            ],
+            "starts": [
+              {
+                "label": "feed",
+                "converged": true,
+                "iterations": 1,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.3300240351017723,
+                  0.5133226134031698,
+                  0.15665335149505724
+                ],
+                "stationarity_residual": 0.0,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson vapor-like",
+                "converged": true,
+                "iterations": 95,
+                "minimum_tpd": 2.3097116425178163e-09,
+                "witness_composition": [
+                  0.6298144322244781,
+                  0.34872743880735724,
+                  0.021458128968164684
+                ],
+                "stationarity_residual": 9.82488776217554e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson liquid-like",
+                "converged": true,
+                "iterations": 87,
+                "minimum_tpd": 2.588685644912112e-16,
+                "witness_composition": [
+                  0.33002402748288523,
+                  0.5133226152327766,
+                  0.15665335728433818
+                ],
+                "stationarity_residual": 8.98662676182462e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in methane",
+                "converged": true,
+                "iterations": 95,
+                "minimum_tpd": 2.3097115068089086e-09,
+                "witness_composition": [
+                  0.6298144328291351,
+                  0.3487274383207855,
+                  0.021458128850079448
+                ],
+                "stationarity_residual": 9.034455118360392e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-butane",
+                "converged": true,
+                "iterations": 81,
+                "minimum_tpd": 3.1459373888319736e-16,
+                "witness_composition": [
+                  0.3300240251208711,
+                  0.5133226157999928,
+                  0.15665335907913602
+                ],
+                "stationarity_residual": 9.636216246332094e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-decane",
+                "converged": true,
+                "iterations": 86,
+                "minimum_tpd": 1.98884310020481e-17,
+                "witness_composition": [
+                  0.33002402379959583,
+                  0.5133226161172851,
+                  0.15665336008311903
+                ],
+                "stationarity_residual": 8.93162098661913e-09,
+                "reason": "projected stationarity converged"
+              }
+            ],
+            "tpd_tolerance": 1e-08
+          },
+          {
+            "status": "no_negative_tpd_found",
+            "reference_z": 0.7287193854385714,
+            "minimum_tpd": -3.3679200686775952e-09,
+            "witness_composition": [
+              0.3300240274362499,
+              0.5133226149569838,
+              0.15665335760676627
+            ],
+            "starts": [
+              {
+                "label": "feed",
+                "converged": true,
+                "iterations": 1,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.6298144254504678,
+                  0.3487274442141146,
+                  0.02145813033541798
+                ],
+                "stationarity_residual": 0.0,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson vapor-like",
+                "converged": true,
+                "iterations": 96,
+                "minimum_tpd": -7.354905179653096e-16,
+                "witness_composition": [
+                  0.6298144346378886,
+                  0.3487274368209318,
+                  0.021458128541179552
+                ],
+                "stationarity_residual": 9.283059116868092e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "Wilson liquid-like",
+                "converged": true,
+                "iterations": 86,
+                "minimum_tpd": -3.367919936334322e-09,
+                "witness_composition": [
+                  0.3300240266246125,
+                  0.513322615151891,
+                  0.15665335822349646
+                ],
+                "stationarity_residual": 9.567161486906388e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in methane",
+                "converged": true,
+                "iterations": 96,
+                "minimum_tpd": -6.082870466801396e-16,
+                "witness_composition": [
+                  0.6298144286771501,
+                  0.3487274416175802,
+                  0.021458129705269637
+                ],
+                "stationarity_residual": 8.32273035230003e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-butane",
+                "converged": true,
+                "iterations": 82,
+                "minimum_tpd": -3.3679199574003995e-09,
+                "witness_composition": [
+                  0.330024046148554,
+                  0.5133226104633937,
+                  0.15665334338805223
+                ],
+                "stationarity_residual": 8.334483528650086e-09,
+                "reason": "projected stationarity converged"
+              },
+              {
+                "label": "rich in n-decane",
+                "converged": true,
+                "iterations": 86,
+                "minimum_tpd": -3.3679200686775952e-09,
+                "witness_composition": [
+                  0.3300240274362499,
+                  0.5133226149569838,
+                  0.15665335760676627
+                ],
+                "stationarity_residual": 8.397563917054694e-09,
+                "reason": "projected stationarity converged"
+              }
+            ],
+            "tpd_tolerance": 1e-08
+          }
+        ],
+        "attempts": [],
+        "gibbs_resolution_rt": 5.990819386078973e-14,
+        "alpha_model": "WHITSON_PROBLEM18"
+      },
+      "reference": {
+        "status": "two_phase",
+        "beta": 0.5669826857325146,
+        "liquid_composition": [
+          0.3300240390252711,
+          0.513322612675304,
+          0.1566533482994249
+        ],
+        "vapor_composition": [
+          0.6298144298996027,
+          0.348727440682114,
+          0.02145812941828337
+        ],
+        "liquid_z": 0.4283303833996926,
+        "vapor_z": 0.7287193903791976,
+        "fugacity_residual": 3.1086244689504383e-15,
+        "material_residual": 9.71445146547012e-17,
+        "gibbs_change": -0.010275338789175636,
+        "gibbs_resolution": 4.62926952560648e-14,
+        "liquid_tpd_sample": {
+          "minimum_tpd": 0.0,
+          "witness_composition": [
+            0.3300240390252711,
+            0.513322612675304,
+            0.1566533482994249
+          ],
+          "samples": 263
+        },
+        "vapor_tpd_sample": {
+          "minimum_tpd": 0.0,
+          "witness_composition": [
+            0.6298144298996027,
+            0.348727440682114,
+            0.02145812941828337
+          ],
+          "samples": 263
+        },
+        "attempts": [
+          {
+            "fugacity_residual": 3.552713678800501e-15,
+            "material_residual": 1.1102230246251565e-16,
+            "nfev": 9,
+            "gibbs_change": -0.010275338789174637,
+            "gibbs_resolution": 4.6292695256064785e-14,
+            "beta": 0.5669826857325151
+          },
+          {
+            "fugacity_residual": 3.1086244689504383e-15,
+            "material_residual": 9.71445146547012e-17,
+            "nfev": 8,
+            "gibbs_change": -0.010275338789175636,
+            "gibbs_resolution": 4.62926952560648e-14,
+            "beta": 0.5669826857325146
+          },
+          {
+            "fugacity_residual": 2.1094237467877974e-15,
+            "material_residual": 1.6653345369377348e-16,
+            "nfev": 11,
+            "gibbs_change": -0.010275338789174637,
+            "gibbs_resolution": 4.6292695256064785e-14,
+            "beta": 0.5669826857325178
+          },
+          {
+            "fugacity_residual": 2.842170943040401e-14,
+            "material_residual": 1.3322676295501878e-15,
+            "nfev": 9,
+            "gibbs_change": -0.010275338789168864,
+            "gibbs_resolution": 4.6292695256064696e-14,
+            "beta": 0.5669826857325375
+          }
+        ]
+      },
+      "pure_parameters": [
+        {
+          "m": 0.39234029307999996,
+          "alpha": 0.6661681358425662,
+          "a_c": 0.2492817119119853,
+          "a_t": 0.16606353332405088,
+          "b": 2.677133319912878e-05,
+          "A": 0.1471245497729962,
+          "B": 0.08103647785137567
+        },
+        {
+          "m": 0.6619543049472,
+          "alpha": 1.0224826905759914,
+          "a_c": 1.504862926994206,
+          "a_t": 1.5386962945410974,
+          "b": 7.243340993695507e-05,
+          "A": 1.363213193410657,
+          "B": 0.219254991015789
+        },
+        {
+          "m": 1.0700059423145296,
+          "alpha": 1.433412169590973,
+          "a_c": 5.75345007497757,
+          "a_t": 8.247065354606944,
+          "b": 0.0001906230351185216,
+          "A": 7.306515482103701,
+          "B": 0.5770134512332313
+        }
+      ],
+      "numerical_verdict": "PASS",
+      "independent_differences": {
+        "beta": 1.4081590116177267e-08,
+        "liquid_z": 5.555467197382313e-10,
+        "vapor_z": 4.940626241456414e-09,
+        "liquid_composition": 3.923498803626302e-09,
+        "vapor_composition": 4.449134838324653e-09
+      },
+      "printed_output_verdict": "BOOK_DIFFERENCE",
+      "printed_output_differences": {
+        "beta": 0.00013869981410474796,
+        "liquid_composition": 5.796489822768036e-05,
+        "vapor_composition": 2.8574549532200955e-05
+      },
+      "printed_precision_limits": {
+        "beta": 5e-07,
+        "composition": 5e-07
+      },
+      "sensitivities": [
+        {
+          "label": "book_step_temperature_F_plus_460",
+          "temperature_k": 411.1111111111111,
+          "alpha_model": "WHITSON_PROBLEM18",
+          "result": {
+            "status": "two_phase",
+            "message": "Two-phase solution passed local checks; global stability is not certified.",
+            "feed_stability": {
+              "status": "unstable",
+              "reference_z": 0.533513462183524,
+              "minimum_tpd": -0.016777675634802303,
+              "witness_composition": [
+                0.3181967211018725,
+                0.47673626594945767,
+                0.2050670129486698
+              ],
+              "starts": [
+                {
+                  "label": "feed",
+                  "converged": true,
+                  "iterations": 1,
+                  "minimum_tpd": 0.0,
+                  "witness_composition": [
+                    0.5,
+                    0.42,
+                    0.08
+                  ],
+                  "stationarity_residual": 0.0,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson vapor-like",
+                  "converged": true,
+                  "iterations": 82,
+                  "minimum_tpd": -0.011538681174016064,
+                  "witness_composition": [
+                    0.6682423906411703,
+                    0.30992968207848737,
+                    0.02182792728034223
+                  ],
+                  "stationarity_residual": 9.618015339024621e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson liquid-like",
+                  "converged": true,
+                  "iterations": 67,
+                  "minimum_tpd": -0.016777675634801974,
+                  "witness_composition": [
+                    0.3181967061587271,
+                    0.47673626778891204,
+                    0.20506702605236074
+                  ],
+                  "stationarity_residual": 9.87764779344924e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in methane",
+                  "converged": true,
+                  "iterations": 82,
+                  "minimum_tpd": -0.011538681174016218,
+                  "witness_composition": [
+                    0.6682423933807281,
+                    0.3099296799170788,
+                    0.021827926702193134
+                  ],
+                  "stationarity_residual": 8.286895315789966e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-butane",
+                  "converged": true,
+                  "iterations": 62,
+                  "minimum_tpd": -0.016777675634802303,
+                  "witness_composition": [
+                    0.3181967211018725,
+                    0.47673626594945767,
+                    0.2050670129486698
+                  ],
+                  "stationarity_residual": 7.905879780695235e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-decane",
+                  "converged": true,
+                  "iterations": 66,
+                  "minimum_tpd": -0.01677767563480192,
+                  "witness_composition": [
+                    0.31819671215286244,
+                    0.4767362670510527,
+                    0.20506702079608485
+                  ],
+                  "stationarity_residual": 9.96279249723675e-09,
+                  "reason": "projected stationarity converged"
+                }
+              ],
+              "tpd_tolerance": 1e-08
+            },
+            "beta": 0.5681131714438266,
+            "liquid_composition": [
+              0.3298996639690856,
+              0.513241447470808,
+              0.1568588885601106
+            ],
+            "vapor_composition": [
+              0.6293124299125583,
+              0.34911667065241403,
+              0.021570899435024476
+            ],
+            "liquid_z": 0.42850263021259494,
+            "vapor_z": 0.7286382629858326,
+            "fugacity_residual": 7.950731184536153e-09,
+            "material_residual": 0.0,
+            "normalization_residual": 4.218847493575595e-15,
+            "gibbs_change_rt": -0.010229804957969178,
+            "iterations": 39,
+            "phase_stability": [
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.42850263021259494,
+                "minimum_tpd": -5.085813858463147e-15,
+                "witness_composition": [
+                  0.32989965564029533,
+                  0.5132414494636578,
+                  0.15685889489604687
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.3298996639690856,
+                      0.513241447470808,
+                      0.1568588885601106
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": 2.3595331487173797e-09,
+                    "witness_composition": [
+                      0.6293124380099129,
+                      0.3491166641881493,
+                      0.02157089780193773
+                    ],
+                    "stationarity_residual": 8.350595216759634e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 87,
+                    "minimum_tpd": -4.535203294977797e-15,
+                    "witness_composition": [
+                      0.32989964977183495,
+                      0.5132414508678201,
+                      0.15685889936034494
+                    ],
+                    "stationarity_residual": 9.183173975054886e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 95,
+                    "minimum_tpd": 2.3595332278755063e-09,
+                    "witness_composition": [
+                      0.6293124363829136,
+                      0.34911666549614895,
+                      0.021570898120937484
+                    ],
+                    "stationarity_residual": 9.261820354808342e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 81,
+                    "minimum_tpd": -5.085813858463147e-15,
+                    "witness_composition": [
+                      0.32989965564029533,
+                      0.5132414494636578,
+                      0.15685889489604687
+                    ],
+                    "stationarity_residual": 9.81502920482061e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 86,
+                    "minimum_tpd": -4.951962432160099e-15,
+                    "witness_composition": [
+                      0.3298996587759218,
+                      0.5132414487133878,
+                      0.15685889251069035
+                    ],
+                    "stationarity_residual": 9.12898327470226e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              },
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.7286382629858326,
+                "minimum_tpd": -3.4217741931566417e-09,
+                "witness_composition": [
+                  0.3298996572362921,
+                  0.5132414487902395,
+                  0.15685889397346842
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.6293124299125583,
+                      0.34911667065241403,
+                      0.021570899435024476
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": 2.981117578640049e-15,
+                    "witness_composition": [
+                      0.6293124336099002,
+                      0.34911666767999905,
+                      0.02157089871010077
+                    ],
+                    "stationarity_residual": 9.513319752807639e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 86,
+                    "minimum_tpd": -3.421773846080595e-09,
+                    "witness_composition": [
+                      0.3298996553269774,
+                      0.5132414492470866,
+                      0.15685889542593612
+                    ],
+                    "stationarity_residual": 9.777144860115297e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": 2.8133343459271777e-15,
+                    "witness_composition": [
+                      0.62931244010356,
+                      0.349116662459527,
+                      0.021570897436912883
+                    ],
+                    "stationarity_residual": 8.531676207169839e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 82,
+                    "minimum_tpd": -3.4217740523098546e-09,
+                    "witness_composition": [
+                      0.3298996669862676,
+                      0.5132414464573364,
+                      0.15685888655639607
+                    ],
+                    "stationarity_residual": 8.554352634993719e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 86,
+                    "minimum_tpd": -3.4217741931566417e-09,
+                    "witness_composition": [
+                      0.3298996572362921,
+                      0.5132414487902395,
+                      0.15685889397346842
+                    ],
+                    "stationarity_residual": 8.5849701024292e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              }
+            ],
+            "attempts": [],
+            "gibbs_resolution_rt": 1.4694020091311737e-13,
+            "alpha_model": "WHITSON_PROBLEM18"
+          }
+        },
+        {
+          "label": "original_PR1976_exact_temperature",
+          "temperature_k": 410.9277777777778,
+          "alpha_model": "PR1976",
+          "result": {
+            "status": "two_phase",
+            "message": "Two-phase solution passed local checks; global stability is not certified.",
+            "feed_stability": {
+              "status": "unstable",
+              "reference_z": 0.5331619653677029,
+              "minimum_tpd": -0.016463452800342223,
+              "witness_composition": [
+                0.31916435716763325,
+                0.4768891546136349,
+                0.20394648821873174
+              ],
+              "starts": [
+                {
+                  "label": "feed",
+                  "converged": true,
+                  "iterations": 1,
+                  "minimum_tpd": 0.0,
+                  "witness_composition": [
+                    0.5,
+                    0.42,
+                    0.08
+                  ],
+                  "stationarity_residual": 0.0,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson vapor-like",
+                  "converged": true,
+                  "iterations": 82,
+                  "minimum_tpd": -0.011552190760652723,
+                  "witness_composition": [
+                    0.6685217172203074,
+                    0.3096712799011651,
+                    0.02180700287852751
+                  ],
+                  "stationarity_residual": 9.658532376666251e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "Wilson liquid-like",
+                  "converged": true,
+                  "iterations": 68,
+                  "minimum_tpd": -0.016463452800341793,
+                  "witness_composition": [
+                    0.3191643325259138,
+                    0.47688915775805907,
+                    0.20394650971602726
+                  ],
+                  "stationarity_residual": 8.293793575531172e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in methane",
+                  "converged": true,
+                  "iterations": 82,
+                  "minimum_tpd": -0.011552190760652777,
+                  "witness_composition": [
+                    0.6685217150323521,
+                    0.30967128162802304,
+                    0.021807003339624806
+                  ],
+                  "stationarity_residual": 8.319756427191405e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-butane",
+                  "converged": true,
+                  "iterations": 62,
+                  "minimum_tpd": -0.016463452800342223,
+                  "witness_composition": [
+                    0.31916435716763325,
+                    0.4768891546136349,
+                    0.20394648821873174
+                  ],
+                  "stationarity_residual": 8.084770606459069e-09,
+                  "reason": "projected stationarity converged"
+                },
+                {
+                  "label": "rich in n-decane",
+                  "converged": true,
+                  "iterations": 67,
+                  "minimum_tpd": -0.01646345280034204,
+                  "witness_composition": [
+                    0.31916433606975725,
+                    0.47688915730584425,
+                    0.20394650662439842
+                  ],
+                  "stationarity_residual": 8.35726548381599e-09,
+                  "reason": "projected stationarity converged"
+                }
+              ],
+              "tpd_tolerance": 1e-08
+            },
+            "beta": 0.5666630114233158,
+            "liquid_composition": [
+              0.3305343661839932,
+              0.513089601650104,
+              0.15637603216589901
+            ],
+            "vapor_composition": [
+              0.6295932960942965,
+              0.3488127743761899,
+              0.021593929529516383
+            ],
+            "liquid_z": 0.42861517197729854,
+            "vapor_z": 0.7284159004408979,
+            "fugacity_residual": 8.375104165736502e-09,
+            "material_residual": 5.551115123125783e-17,
+            "normalization_residual": 3.774758283725532e-15,
+            "gibbs_change_rt": -0.010155422604403129,
+            "iterations": 39,
+            "phase_stability": [
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.42861517197729854,
+                "minimum_tpd": 0.0,
+                "witness_composition": [
+                  0.3305343661839932,
+                  0.513089601650104,
+                  0.15637603216589901
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.3305343661839932,
+                      0.513089601650104,
+                      0.15637603216589901
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": 2.4496829649365172e-09,
+                    "witness_composition": [
+                      0.6295933045480291,
+                      0.3488127676277364,
+                      0.02159392782423452
+                    ],
+                    "stationarity_residual": 8.670362295849724e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 87,
+                    "minimum_tpd": 2.561182973461519e-15,
+                    "witness_composition": [
+                      0.3305343595948593,
+                      0.5130896032471272,
+                      0.1563760371580135
+                    ],
+                    "stationarity_residual": 9.461067055517925e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 95,
+                    "minimum_tpd": 2.449682980102413e-09,
+                    "witness_composition": [
+                      0.6295933019317429,
+                      0.34881276973094366,
+                      0.021593928337313367
+                    ],
+                    "stationarity_residual": 9.608792713498713e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 82,
+                    "minimum_tpd": 3.0492155524067463e-15,
+                    "witness_composition": [
+                      0.33053435907217343,
+                      0.5130896033738115,
+                      0.15637603755401505
+                    ],
+                    "stationarity_residual": 8.364183610191651e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 86,
+                    "minimum_tpd": 3.3333080326297933e-15,
+                    "witness_composition": [
+                      0.33053435819091753,
+                      0.5130896035874032,
+                      0.15637603822167928
+                    ],
+                    "stationarity_residual": 9.40062685129655e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              },
+              {
+                "status": "no_negative_tpd_found",
+                "reference_z": 0.7284159004408979,
+                "minimum_tpd": -3.5765331431883075e-09,
+                "witness_composition": [
+                  0.3305343584655135,
+                  0.5130896032154137,
+                  0.15637603831907282
+                ],
+                "starts": [
+                  {
+                    "label": "feed",
+                    "converged": true,
+                    "iterations": 1,
+                    "minimum_tpd": 0.0,
+                    "witness_composition": [
+                      0.6295932960942965,
+                      0.3488127743761899,
+                      0.021593929529516383
+                    ],
+                    "stationarity_residual": 0.0,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson vapor-like",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": -2.923862430462666e-15,
+                    "witness_composition": [
+                      0.6295933007304153,
+                      0.3488127706492561,
+                      0.0215939286203285
+                    ],
+                    "stationarity_residual": 9.871876731661985e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "Wilson liquid-like",
+                    "converged": true,
+                    "iterations": 87,
+                    "minimum_tpd": -3.5765331431883075e-09,
+                    "witness_composition": [
+                      0.3305343584655135,
+                      0.5130896032154137,
+                      0.15637603831907282
+                    ],
+                    "stationarity_residual": 8.253848885242901e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in methane",
+                    "converged": true,
+                    "iterations": 96,
+                    "minimum_tpd": -2.7638262666284587e-15,
+                    "witness_composition": [
+                      0.6295932995439536,
+                      0.3488127716030413,
+                      0.021593928853005033
+                    ],
+                    "stationarity_residual": 8.85313320263293e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-butane",
+                    "converged": true,
+                    "iterations": 82,
+                    "minimum_tpd": -3.5765329991018063e-09,
+                    "witness_composition": [
+                      0.33053437734149965,
+                      0.5130895986404047,
+                      0.15637602401809567
+                    ],
+                    "stationarity_residual": 8.484422429332823e-09,
+                    "reason": "projected stationarity converged"
+                  },
+                  {
+                    "label": "rich in n-decane",
+                    "converged": true,
+                    "iterations": 86,
+                    "minimum_tpd": -3.5765328672639463e-09,
+                    "witness_composition": [
+                      0.33053435669759795,
+                      0.5130896036439069,
+                      0.15637603965849517
+                    ],
+                    "stationarity_residual": 8.839877843493632e-09,
+                    "reason": "projected stationarity converged"
+                  }
+                ],
+                "tpd_tolerance": 1e-08
+              }
+            ],
+            "attempts": [],
+            "gibbs_resolution_rt": 1.361167967323843e-13,
+            "alpha_model": "PR1976"
+          }
+        }
+      ]
+    }
+  ],
+  "loaded_source_hashes": {
+    "__main__": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\tools\\benchmark_whitson_problem18.py",
+      "sha256": "75392b98b2e8fc6c4949b173982fdc388582151936c535a6b0bf32266c4afc76"
+    },
+    "petroflash.components": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\components.py",
+      "sha256": "a9c564cf5930566e5d0d127f86162bca2b180fda6d9164745bb1a908f38e8c57"
+    },
+    "petroflash.conditions": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\conditions.py",
+      "sha256": "153deb7b8734d95a60b17650279bbf2da8d4cb849cea9ab25c5be461a9d017eb"
+    },
+    "petroflash.database": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\database.py",
+      "sha256": "d7b41a24027d75281a100db8065a45294eec39cbc9b32c66fe5e804c2a6b3abb"
+    },
+    "petroflash.flash": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\flash.py",
+      "sha256": "ea2a2e0d188c356a22662338f745e415d71ec878516873a63c124572c55a3278"
+    },
+    "petroflash.mixture": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\mixture.py",
+      "sha256": "b494b063bc7ff999cc83e2a0f2ec32a59401001fe27ab9c84ef1f6b2e198a82a"
+    },
+    "petroflash.pr_fugacity": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\pr_fugacity.py",
+      "sha256": "c186833c9cd107b0875641772b786596a907ef9129bb075c1d9f0a260448d714"
+    },
+    "petroflash.pr_mixing": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\pr_mixing.py",
+      "sha256": "9fe0f22519110f4864f3cf23d1fff11e2988b9f0f1352195052eeb95ae5d200d"
+    },
+    "petroflash.pr_phase": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\pr_phase.py",
+      "sha256": "560f8100b3e12ff97e430fbd8a7fa6db3d211caa6e5a3ec7c8d1354d6c2be3bc"
+    },
+    "petroflash.pr_pure": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\pr_pure.py",
+      "sha256": "ca5b433f2155702d7c75bb134cf928185f8dd4e0c2c6f97e97772473120179a8"
+    },
+    "petroflash.pr_roots": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\pr_roots.py",
+      "sha256": "4623f5a7d8c5d37e2be2eaa7bd3b8fe345570918fa19fbd9008e7fd4e03c576c"
+    },
+    "petroflash.properties": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\properties.py",
+      "sha256": "74184670d12153823b149b36f4bd883d4b9351a198e4060fe86aacb6bf7c6c41"
+    },
+    "petroflash.rachford_rice": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\rachford_rice.py",
+      "sha256": "d4e1d1aa0d0525876edb18c90d3f39ac38bd687a629a024fc2ba36563dfa120a"
+    },
+    "petroflash.stability": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\stability.py",
+      "sha256": "e15fc4402b28a7c05505590c38613106ca6a76ff364b1399c297e4112ded6362"
+    },
+    "petroflash.tpd": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\src\\petroflash\\tpd.py",
+      "sha256": "476426702b8458fb26c5784bdf35213d18922b2787f02b05b4e36a7ace675c22"
+    },
+    "pr_multicomponent_reference": {
+      "path": "D:\\Thesis-Shojaei\\NEKNEK\\PCSATF-Project\\GitHub-Repo-FlashCalculation\\Python-Petro-Falsh\\petroflash\\tools\\pr_multicomponent_reference.py",
+      "sha256": "e9a9d8fd1adc67a07068ebaf0438660b18cdc529a95e63b9f30d9e21bef837fe"
+    }
+  }
+}

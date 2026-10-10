@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "kind": "published_calculated_example_not_experimental_data",
+  "source": {
+    "title": "Whitson and Brule, Phase Behavior, Appendix B, Problem 18",
+    "tables": [
+      "B-28",
+      "B-29",
+      "B-30",
+      "B-32"
+    ],
+    "pdf_pages": [
+      15,
+      16,
+      17
+    ],
+    "sha256": "2cc4097446ddabf7e5b803148c3715832d8d788e05667dcbf9881f3b018a4cd8"
+  },
+  "names": [
+    "methane",
+    "n-butane",
+    "n-decane"
+  ],
+  "formulas": [
+    "CH4",
+    "C4H10",
+    "C10H22"
+  ],
+  "feed": [
+    0.5,
+    0.42,
+    0.08
+  ],
+  "critical_temperature_rankine": [
+    343.0,
+    765.3,
+    1111.8
+  ],
+  "critical_pressure_psia": [
+    667.8,
+    550.7,
+    304.0
+  ],
+  "omega": [
+    0.0115,
+    0.1928,
+    0.4902
+  ],
+  "temperature_f": 280.0,
+  "alpha_model": "WHITSON_PROBLEM18",
+  "kij": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "cases": [
+    {
+      "pressure_psia": 500.0,
+      "beta": 0.853401,
+      "liquid_composition": [
+        0.08588,
+        0.46349,
+        0.45064
+      ],
+      "vapor_composition": [
+        0.57114,
+        0.41253,
+        0.01633
+      ],
+      "composition_printed_decimals": 5
+    },
+    {
+      "pressure_psia": 1500.0,
+      "beta": 0.566844,
+      "liquid_composition": [
+        0.330082,
+        0.513307,
+        0.156611
+      ],
+      "vapor_composition": [
+        0.629843,
+        0.348699,
+        0.021457
+      ],
+      "composition_printed_decimals": 6
+    }
+  ],
+  "notes": [
+    "Exact Fahrenheit conversion is used for the main comparison; F+460 is a separate sensitivity run.",
+    "Printed input properties are used as supplied; no tuning to printed output.",
+    "Volume translation is excluded; no shifted volume or density comparisons.",
+    "Eq.4.22 for omega>0.4 is specific to the explicit instruction in this problem.",
+    "A printed-output difference is retained even if the independent numerical comparison passes."
+  ]
+}

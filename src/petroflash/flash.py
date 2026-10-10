@@ -11,7 +11,7 @@ from sys import float_info
 from types import SimpleNamespace
 
 from .pr_phase import evaluate_pr_phase
-from .pr_pure import _number, component_pr_parameters
+from .pr_pure import _number, component_pr_parameters, validate_alpha_model
 from .rachford_rice import solve_rachford_rice
 from .stability import StabilityResult, search_pr_stability
 from .tpd import _composition
@@ -35,6 +35,7 @@ class FlashResult:
     phase_stability: tuple[StabilityResult, ...] = ()
     attempts: tuple[str, ...] = ()
     gibbs_resolution_rt: float | None = None
+    alpha_model: str = "PR1976"
 
 
 def _gibbs(x, ln_phi):
@@ -76,15 +77,20 @@ def _center_seed(logk, z):
 
 
 def flash_tp(mixture, conditions, *, kij, max_iterations=100,
-             fugacity_tolerance=1e-8, stability_max_iterations=200):
+             fugacity_tolerance=1e-8, stability_max_iterations=200,
+             alpha_model="PR1976"):
     """Return two_phase, single_phase_candidate or inconclusive.
 
+    alpha_model is PR1976 by default; WHITSON_PROBLEM18 is an explicit
+    book-example correlation option. Feed and post-flash searches use the
+    same selected correlation as the flash phases.
     A single-phase candidate has no assigned liquid/vapor label or beta.
     Two-phase output passes mass balance, fugacity, nontriviality, Gibbs
     decrease and local phase stability checks. Such checks are not global
     proofs. Smaller Z is labelled liquid under the simple-hydrocarbon VLE
     scope; water/nonhydrocarbon feeds are rejected by this initial interface.
     """
+    alpha_model = validate_alpha_model(alpha_model)
     for name, value in (('max_iterations', max_iterations),
                         ('stability_max_iterations', stability_max_iterations)):
         if isinstance(value, bool) or not isinstance(value, int):
@@ -102,14 +108,14 @@ def flash_tp(mixture, conditions, *, kij, max_iterations=100,
             raise ValueError('This initial TP flash supports simple hydrocarbon feeds only.')
     kk = tuple(tuple(row) for row in kij)
     feed_search = search_pr_stability(mixture, conditions, kij=kk,
-                                      max_iterations=stability_max_iterations)
+                                      max_iterations=stability_max_iterations, alpha_model=alpha_model)
     if feed_search.status == 'inconclusive':
-        return FlashResult('inconclusive', 'Feed stability search was inconclusive.', feed_search)
+        return FlashResult('inconclusive', 'Feed stability search was inconclusive.', feed_search, alpha_model=alpha_model)
     if feed_search.status == 'no_negative_tpd_found':
         return FlashResult('single_phase_candidate',
             'No negative TPD was found. Local-search candidate only; no vapor/liquid label assigned.',
-            feed_search)
-    pure = tuple(component_pr_parameters(c, conditions) for c in mixture.components)
+            feed_search, alpha_model=alpha_model)
+    pure = tuple(component_pr_parameters(c, conditions, alpha_model=alpha_model) for c in mixture.components)
     common = dict(a_t=tuple(q.a_t for q in pure), b=tuple(q.b for q in pure), kij=kk,
                   temperature_k=conditions.temperature_k, pressure_pa=conditions.pressure_pa)
     reference = evaluate_pr_phase(mole_fractions=z, **common).preferred_candidates[0]
@@ -208,15 +214,15 @@ def flash_tp(mixture, conditions, *, kij, max_iterations=100,
                     x, y, l, v, beta = y, x, v, l, 1-beta
                 phases = tuple(search_pr_stability(SimpleNamespace(
                     components=mixture.components, mole_fractions=composition), conditions,
-                    kij=kk, max_iterations=stability_max_iterations) for composition in (x, y))
+                    kij=kk, max_iterations=stability_max_iterations, alpha_model=alpha_model) for composition in (x, y))
                 if any(q.status != 'no_negative_tpd_found' for q in phases):
                     raise ArithmeticError('Post-flash local phase stability checks did not pass.')
                 return FlashResult('two_phase',
                     'Two-phase solution passed local checks; global stability is not certified.',
                     feed_search, beta, x, y, l.z, v.z, norm, material, normalization,
-                    gibbs_change, iteration, phases, tuple(attempts), gibbs_resolution)
+                    gibbs_change, iteration, phases, tuple(attempts), gibbs_resolution, alpha_model)
             except (ValueError, ArithmeticError, RuntimeError) as error:
                 attempts.append(f'{label}, roots {branch}: {error}')
     return FlashResult('inconclusive',
         'Feed is unstable but no validated two-phase split was obtained.',
-        feed_search, attempts=tuple(attempts))
+        feed_search, attempts=tuple(attempts), alpha_model=alpha_model)

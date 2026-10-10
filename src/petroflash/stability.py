@@ -1,4 +1,4 @@
-"""Multi-start, damped fixed-point TPD stationarity search for PR1976.
+"""Multi-start, damped fixed-point TPD stationarity search for PR with explicit alpha selection.
 
 This is a baseline local search, not a certified global minimizer. A negative
 evaluated TPD is a witness even if that start subsequently fails to converge.
@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from math import exp, fsum, isfinite, log
 
 from .pr_phase import evaluate_pr_phase
-from .pr_pure import _number, component_pr_parameters
+from .pr_pure import _number, component_pr_parameters, validate_alpha_model
 from .tpd import _composition, tangent_plane_distance
 
 
@@ -47,7 +47,7 @@ def _softmax(log_values):
 
 def search_pr_stability(mixture, conditions, *, kij, max_iterations=200,
                         damping=0.5, stationarity_tolerance=1e-8,
-                        tpd_tolerance=1e-8):
+                        tpd_tolerance=1e-8, alpha_model="PR1976"):
     """Search normalized TPD stationarity from feed, Wilson +/- and rich starts.
 
     Convergence checks the projected chemical-potential residual, not merely
@@ -55,6 +55,7 @@ def search_pr_stability(mixture, conditions, *, kij, max_iterations=200,
     Zero-feed species are excluded from all generated trial compositions.
     Model validation and reference-evaluation errors propagate to the caller.
     """
+    alpha_model = validate_alpha_model(alpha_model)
     if isinstance(max_iterations, bool) or not isinstance(max_iterations, int):
         raise TypeError('max_iterations must be an integer.')
     if max_iterations < 1:
@@ -68,7 +69,7 @@ def search_pr_stability(mixture, conditions, *, kij, max_iterations=200,
     if len(z) != len(mixture.components):
         raise ValueError('Composition must match the component count.')
     active = tuple(i for i, value in enumerate(z) if value > 0)
-    pure = tuple(component_pr_parameters(c, conditions) for c in mixture.components)
+    pure = tuple(component_pr_parameters(c, conditions, alpha_model=alpha_model) for c in mixture.components)
     common = dict(a_t=tuple(q.a_t for q in pure), b=tuple(q.b for q in pure),
         kij=tuple(tuple(row) for row in kij), temperature_k=conditions.temperature_k,
         pressure_pa=conditions.pressure_pa)

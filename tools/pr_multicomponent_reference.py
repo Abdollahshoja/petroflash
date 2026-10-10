@@ -9,13 +9,17 @@ from scipy.special import softmax, expit
 R = 8.31446261815324
 
 class MulticomponentPRReference:
-    def __init__(self, properties, temperature_k, pressure_pa, kij):
+    def __init__(self, properties, temperature_k, pressure_pa, kij, alpha_model="PR1976"):
         self.T, self.P = float(temperature_k), float(pressure_pa)
         self.n = len(properties)
         tc = np.array([c['Tc_K'] for c in properties])
         pc = np.array([c['Pc_Pa'] for c in properties])
         omega = np.array([c['omega'] for c in properties])
         m = .37464+1.54226*omega-.26992*omega**2
+        if alpha_model not in ('PR1976','WHITSON_PROBLEM18'):
+            raise ValueError('Unsupported independent alpha model.')
+        if alpha_model=='WHITSON_PROBLEM18':
+            m=np.where(omega>.4,.3796+1.485*omega-.1644*omega**2+.01667*omega**3,m)
         a = .45724*(R*tc)**2/pc*(1+m*(1-np.sqrt(self.T/tc)))**2
         self.b = .0778*R*tc/pc
         self.aij = np.sqrt(a[:,None]*a[None,:])*(1-np.array(kij))

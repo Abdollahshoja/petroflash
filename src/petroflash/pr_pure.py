@@ -1,4 +1,4 @@
-"""Original Peng-Robinson (1976) pure-component parameters in SI units.
+"""Peng-Robinson pure parameters with explicit alpha-correlation selection.
 
 No mixing, root selection, stability analysis or flash is performed here.
 """
@@ -8,6 +8,14 @@ from math import isfinite, sqrt
 from numbers import Real
 
 R = 8.31446261815324  # Pa m^3 / (mol K)
+
+
+def validate_alpha_model(alpha_model):
+    if not isinstance(alpha_model, str):
+        raise TypeError('alpha_model must be a string.')
+    if alpha_model not in ('PR1976', 'WHITSON_PROBLEM18'):
+        raise ValueError('alpha_model must be PR1976 or WHITSON_PROBLEM18.')
+    return alpha_model
 
 
 def _number(value, name, *, positive=False):
@@ -38,13 +46,17 @@ class PRPureParameters:
 
 def pr_pure_parameters(*, temperature_k, pressure_pa,
                        critical_temperature_k, critical_pressure_pa,
-                       acentric_factor):
-    """Calculate PR1976 parameters; pressure is absolute.
+                       acentric_factor, alpha_model="PR1976"):
+    """Calculate PR parameters with explicit alpha selection; pressure is absolute.
 
     Inputs must use the stated SI units. Negative acentric factors are allowed.
     The original quadratic m correlation is used for every supplied omega;
-    this function does not silently switch to PR1978 or a fitted alpha model.
+    this function does not silently switch to a modified or fitted alpha model.
+    WHITSON_PROBLEM18 explicitly follows Appendix B Problem 18: Eq. 4.22
+    for omega > 0.4, the quadratic Eq. 4.21 otherwise. This is not a
+    universal PR1978 threshold policy. Default PR1976 is unchanged.
     """
+    alpha_model = validate_alpha_model(alpha_model)
     t = _number(temperature_k, "temperature_k", positive=True)
     p = _number(pressure_pa, "pressure_pa", positive=True)
     tc = _number(critical_temperature_k, "critical_temperature_k", positive=True)
@@ -52,6 +64,8 @@ def pr_pure_parameters(*, temperature_k, pressure_pa,
     omega = _number(acentric_factor, "acentric_factor")
     try:
         m = 0.37464 + 1.54226 * omega - 0.26992 * omega**2
+        if alpha_model == "WHITSON_PROBLEM18" and omega > 0.4:
+            m = 0.3796 + 1.485*omega - 0.1644*omega**2 + 0.01667*omega**3
         alpha = (1 + m * (1 - sqrt(t / tc)))**2
         a_c = 0.45724 * (R * tc)**2 / pc
         a_t = a_c * alpha
@@ -66,7 +80,7 @@ def pr_pure_parameters(*, temperature_k, pressure_pa,
     return PRPureParameters(*values)
 
 
-def component_pr_parameters(component, conditions):
+def component_pr_parameters(component, conditions, *, alpha_model="PR1976"):
     """Adapter for a validated Component and TPConditions, preserving SI units."""
     return pr_pure_parameters(
         temperature_k=conditions.temperature_k,
@@ -74,4 +88,5 @@ def component_pr_parameters(component, conditions):
         critical_temperature_k=component.critical_temperature.value,
         critical_pressure_pa=component.critical_pressure.value,
         acentric_factor=component.acentric_factor.value,
+        alpha_model=alpha_model,
     )
