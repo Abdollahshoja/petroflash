@@ -26,6 +26,9 @@ EXPECTED_COMPONENTS = {
     "n-octane": "111-65-9",
     "n-nonane": "111-84-2",
     "n-decane": "124-18-5",
+    "n-undecane": "1120-21-4",
+    "n-dodecane": "112-40-3",
+    "n-hexadecane": "544-76-3",
 
 }
 
@@ -40,8 +43,8 @@ class TestCentralDataset(unittest.TestCase):
         )
 
     def test_dataset_identity_and_inventory(self):
-        self.assertEqual(self.db.dataset_version, "0.3.0")
-        self.assertEqual(len(self.db), 16)
+        self.assertEqual(self.db.dataset_version, "0.4.0")
+        self.assertEqual(len(self.db), 19)
         self.assertEqual(set(self.db.names()), set(EXPECTED_COMPONENTS))
 
         for name, cas_number in EXPECTED_COMPONENTS.items():

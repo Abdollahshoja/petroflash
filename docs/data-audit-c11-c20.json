@@ -1,0 +1,461 @@
+{
+  "dataset_version": "0.4.0",
+  "provider": "chemicals 1.5.2",
+  "selection": "HEOS only; unavailable fields are excluded, not replaced",
+  "access_date": "2026-10-10",
+  "previous_file_sha256": "a82e0176b6a42439ada496155a70bae81b104032b7af71e2cc35647189b1a988",
+  "previous_records_preserved": true,
+  "original_count": 16,
+  "new_count": 19,
+  "coverage": [
+    {
+      "carbon_number": 11,
+      "name": "n-undecane",
+      "cas_number": "1120-21-4",
+      "formula": "C11H24",
+      "molar_mass_kg_mol": 0.15630825999999998,
+      "available_methods": {
+        "critical_temperature": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "HEOS",
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {
+        "critical_temperature": 638.8,
+        "critical_pressure": 1990400.0,
+        "acentric_factor": 0.539
+      },
+      "missing_fields": [],
+      "included": true
+    },
+    {
+      "carbon_number": 12,
+      "name": "n-dodecane",
+      "cas_number": "112-40-3",
+      "formula": "C12H26",
+      "molar_mass_kg_mol": 0.17033484000000002,
+      "available_methods": {
+        "critical_temperature": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "HEOS",
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {
+        "critical_temperature": 658.1,
+        "critical_pressure": 1817000.0,
+        "acentric_factor": 0.574
+      },
+      "missing_fields": [],
+      "included": true
+    },
+    {
+      "carbon_number": 13,
+      "name": "n-tridecane",
+      "cas_number": "629-50-5",
+      "formula": "C13H28",
+      "molar_mass_kg_mol": 0.18436142,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 14,
+      "name": "n-tetradecane",
+      "cas_number": "629-59-4",
+      "formula": "C14H30",
+      "molar_mass_kg_mol": 0.198388,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 15,
+      "name": "n-pentadecane",
+      "cas_number": "629-62-9",
+      "formula": "C15H32",
+      "molar_mass_kg_mol": 0.21241458,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 16,
+      "name": "n-hexadecane",
+      "cas_number": "544-76-3",
+      "formula": "C16H34",
+      "molar_mass_kg_mol": 0.22644116,
+      "available_methods": {
+        "critical_temperature": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "HEOS",
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "HEOS",
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {
+        "critical_temperature": 722.1,
+        "critical_pressure": 1479850.0,
+        "acentric_factor": 0.749
+      },
+      "missing_fields": [],
+      "included": true
+    },
+    {
+      "carbon_number": 17,
+      "name": "n-heptadecane",
+      "cas_number": "629-78-7",
+      "formula": "C17H36",
+      "molar_mass_kg_mol": 0.24046773999999999,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 18,
+      "name": "n-octadecane",
+      "cas_number": "593-45-3",
+      "formula": "C18H38",
+      "molar_mass_kg_mol": 0.25449432,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 19,
+      "name": "n-nonadecane",
+      "cas_number": "629-92-5",
+      "formula": "C19H40",
+      "molar_mass_kg_mol": 0.2685209,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    },
+    {
+      "carbon_number": 20,
+      "name": "n-eicosane",
+      "cas_number": "112-95-8",
+      "formula": "C20H42",
+      "molar_mass_kg_mol": 0.28254748,
+      "available_methods": {
+        "critical_temperature": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "critical_pressure": [
+          "IUPAC",
+          "CRC",
+          "PSRK",
+          "PD",
+          "WEBBOOK",
+          "PINAMARTINES",
+          "YAWS",
+          "JOBACK",
+          "WILSON_JASPERSON"
+        ],
+        "acentric_factor": [
+          "PSRK",
+          "PD",
+          "YAWS",
+          "ACENTRIC_DEFINITION"
+        ]
+      },
+      "selected_values": {},
+      "missing_fields": [
+        "critical_temperature",
+        "critical_pressure",
+        "acentric_factor"
+      ],
+      "included": false
+    }
+  ]
+}
