@@ -1,4 +1,4 @@
-﻿"""Regression checks for the selected central dataset.
+"""Regression checks for the selected central dataset.
 
 These verify the accepted dataset contract, not experimental accuracy.
 """
@@ -22,6 +22,11 @@ EXPECTED_COMPONENTS = {
     "carbon dioxide": "124-38-9",
     "hydrogen sulfide": "7783-06-4",
     "water": "7732-18-5",
+    "n-heptane": "142-82-5",
+    "n-octane": "111-65-9",
+    "n-nonane": "111-84-2",
+    "n-decane": "124-18-5",
+
 }
 
 
@@ -35,8 +40,8 @@ class TestCentralDataset(unittest.TestCase):
         )
 
     def test_dataset_identity_and_inventory(self):
-        self.assertEqual(self.db.dataset_version, "0.2.0")
-        self.assertEqual(len(self.db), 12)
+        self.assertEqual(self.db.dataset_version, "0.3.0")
+        self.assertEqual(len(self.db), 16)
         self.assertEqual(set(self.db.names()), set(EXPECTED_COMPONENTS))
 
         for name, cas_number in EXPECTED_COMPONENTS.items():

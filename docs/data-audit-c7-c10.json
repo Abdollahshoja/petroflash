@@ -1,0 +1,49 @@
+{
+  "dataset_version": "0.3.0",
+  "provider": "chemicals 1.5.2",
+  "selection": "HEOS; no fallback",
+  "original_count": 12,
+  "new_count": 16,
+  "original_records_preserved": true,
+  "original_numeric_values_verified_against_provider": true,
+  "original_file_sha256": "8fd427406cdeda54ae3dde71d6425a99a54c8fb0ce155dcb65113062eeffef66",
+  "new_file_sha256": "a82e0176b6a42439ada496155a70bae81b104032b7af71e2cc35647189b1a988",
+  "new_components": [
+    {
+      "name": "n-heptane",
+      "cas": "142-82-5",
+      "formula": "C7H16",
+      "Tc": 540.2,
+      "Pc": 2735730.0,
+      "omega": 0.349,
+      "MW_kg_mol": 0.10020193999999999
+    },
+    {
+      "name": "n-octane",
+      "cas": "111-65-9",
+      "formula": "C8H18",
+      "Tc": 568.74,
+      "Pc": 2483590.0,
+      "omega": 0.398,
+      "MW_kg_mol": 0.11422852
+    },
+    {
+      "name": "n-nonane",
+      "cas": "111-84-2",
+      "formula": "C9H20",
+      "Tc": 594.55,
+      "Pc": 2281000.0,
+      "omega": 0.4433,
+      "MW_kg_mol": 0.1282551
+    },
+    {
+      "name": "n-decane",
+      "cas": "124-18-5",
+      "formula": "C10H22",
+      "Tc": 617.7,
+      "Pc": 2103000.0,
+      "omega": 0.4884,
+      "MW_kg_mol": 0.14228168
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "dataset_version": "0.2.0",
-  "description": "12 components from chemicals 1.5.2: HEOS Tc/Pc/omega and metadata molar mass; no fallback.",
+  "dataset_version": "0.3.0",
+  "description": "16 components from chemicals 1.5.2: HEOS Tc/Pc/omega and metadata molar mass; no fallback.",
   "components": [
     {
       "name": "methane",
@@ -534,6 +534,186 @@
       },
       "molar_mass": {
         "value": 0.01801528,
+        "unit": "kg/mol",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.identifiers.html",
+        "method": "identifiers.search_chemical metadata",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Tabulated metadata MW converted from g/mol to kg/mol; not a HEOS property. EVALUATED denotes selected reference data."
+      }
+    },
+    {
+      "name": "n-heptane",
+      "cas_number": "142-82-5",
+      "formula": "C7H16",
+      "critical_temperature": {
+        "value": 540.2,
+        "unit": "K",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "critical_pressure": {
+        "value": 2735730.0,
+        "unit": "Pa",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "acentric_factor": {
+        "value": 0.349,
+        "unit": "1",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.acentric.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "molar_mass": {
+        "value": 0.10020193999999999,
+        "unit": "kg/mol",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.identifiers.html",
+        "method": "identifiers.search_chemical metadata",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Tabulated metadata MW converted from g/mol to kg/mol; not a HEOS property. EVALUATED denotes selected reference data."
+      }
+    },
+    {
+      "name": "n-octane",
+      "cas_number": "111-65-9",
+      "formula": "C8H18",
+      "critical_temperature": {
+        "value": 568.74,
+        "unit": "K",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "critical_pressure": {
+        "value": 2483590.0,
+        "unit": "Pa",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "acentric_factor": {
+        "value": 0.398,
+        "unit": "1",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.acentric.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "molar_mass": {
+        "value": 0.11422852,
+        "unit": "kg/mol",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.identifiers.html",
+        "method": "identifiers.search_chemical metadata",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Tabulated metadata MW converted from g/mol to kg/mol; not a HEOS property. EVALUATED denotes selected reference data."
+      }
+    },
+    {
+      "name": "n-nonane",
+      "cas_number": "111-84-2",
+      "formula": "C9H20",
+      "critical_temperature": {
+        "value": 594.55,
+        "unit": "K",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "critical_pressure": {
+        "value": 2281000.0,
+        "unit": "Pa",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "acentric_factor": {
+        "value": 0.4433,
+        "unit": "1",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.acentric.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "molar_mass": {
+        "value": 0.1282551,
+        "unit": "kg/mol",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.identifiers.html",
+        "method": "identifiers.search_chemical metadata",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Tabulated metadata MW converted from g/mol to kg/mol; not a HEOS property. EVALUATED denotes selected reference data."
+      }
+    },
+    {
+      "name": "n-decane",
+      "cas_number": "124-18-5",
+      "formula": "C10H22",
+      "critical_temperature": {
+        "value": 617.7,
+        "unit": "K",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "critical_pressure": {
+        "value": 2103000.0,
+        "unit": "Pa",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.critical.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "acentric_factor": {
+        "value": 0.4884,
+        "unit": "1",
+        "source": "chemicals 1.5.2",
+        "reference": "https://chemicals.readthedocs.io/chemicals.acentric.html",
+        "method": "HEOS",
+        "data_kind": "evaluated",
+        "uncertainty": null,
+        "notes": "Fixed HEOS selection; no fallback to another method. EVALUATED is the project's reference-data classification."
+      },
+      "molar_mass": {
+        "value": 0.14228168,
         "unit": "kg/mol",
         "source": "chemicals 1.5.2",
         "reference": "https://chemicals.readthedocs.io/chemicals.identifiers.html",

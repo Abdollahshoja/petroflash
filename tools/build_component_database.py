@@ -1,4 +1,4 @@
-﻿"""Build the selected central dataset from chemicals 1.5.2."""
+"""Build the selected central dataset from chemicals 1.5.2."""
 
 import json
 import sys
@@ -17,7 +17,8 @@ from chemicals.identifiers import search_chemical
 from petroflash.components import Component
 from petroflash.database import ComponentDatabase
 from petroflash.properties import DataKind, PropertyRecord
-from check_data_coverage import COMPONENTS
+# Dataset inventory is explicit; the historical coverage audit has its own scope.
+COMPONENTS = (('methane', '74-82-8'), ('ethane', '74-84-0'), ('propane', '74-98-6'), ('n-butane', '106-97-8'), ('isobutane', '75-28-5'), ('n-pentane', '109-66-0'), ('isopentane', '78-78-4'), ('n-hexane', '110-54-3'), ('nitrogen', '7727-37-9'), ('carbon dioxide', '124-38-9'), ('hydrogen sulfide', '7783-06-4'), ('water', '7732-18-5'), ('n-heptane', '142-82-5'), ('n-octane', '111-65-9'), ('n-nonane', '111-84-2'), ('n-decane', '124-18-5'))
 
 
 def record(value, unit, method, reference, notes):
@@ -94,9 +95,9 @@ def main():
 
     document = {
         "schema_version": 1,
-        "dataset_version": "0.2.0",
+        "dataset_version": "0.3.0",
         "description": (
-            "12 components from chemicals 1.5.2: "
+            "16 components from chemicals 1.5.2: "
             "HEOS Tc/Pc/omega and metadata molar mass; no fallback."
         ),
         "components": [asdict(component) for component in components],
