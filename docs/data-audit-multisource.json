@@ -1,0 +1,105 @@
+{
+  "previous_count": 19,
+  "new_count": 26,
+  "original_records_preserved": true,
+  "source_policy": "Explicit reviewed row selection per property; NIST is not claimed as source for omega or molar mass.",
+  "source_date": "2026-10-10",
+  "selected_rows": [
+    {
+      "name": "n-tridecane",
+      "Tc_K": 675,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 1,
+      "Pc_bar": 16.79,
+      "Pc_printed_TRC_uncertainty_bar": 0.2,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629505&Mask=3FFF&Units=SI",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629505&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Rosenthal and Teja, 1989 row",
+      "omega_value": 0.6231,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-tetradecane",
+      "Tc_K": 693,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 2,
+      "Pc_bar": 15.73,
+      "Pc_printed_TRC_uncertainty_bar": 0.2,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629594&Mask=2034&Units=SI",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629594&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Rosenthal and Teja, 1989 row",
+      "omega_value": 0.6797,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-pentadecane",
+      "Tc_K": 708,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 2,
+      "Pc_bar": 14.79,
+      "Pc_printed_TRC_uncertainty_bar": 0.0002,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629629&Mask=2034&Units=SI",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629629&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Rosenthal and Teja, 1989 row",
+      "omega_value": 0.706,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-heptadecane",
+      "Tc_K": 736,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 2,
+      "Pc_bar": 13.42,
+      "Pc_printed_TRC_uncertainty_bar": 1.6,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629787&Mask=4",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629787&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Rosenthal and Teja, 1989 row",
+      "omega_value": 0.7699,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-octadecane",
+      "Tc_K": 747,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 3,
+      "Pc_bar": 12.92,
+      "Pc_printed_TRC_uncertainty_bar": 1.1,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C593453&Mask=1D",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C593453&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Rosenthal and Teja, 1989 row",
+      "omega_value": 0.7895,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-nonadecane",
+      "Tc_K": 755,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 8,
+      "Pc_bar": 11.6,
+      "Pc_printed_TRC_uncertainty_bar": 0.4,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629925&Mask=6F&Units=SI",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C629925&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Nikitin, Pavlov, et al., 1994 row",
+      "omega_value": 0.8271,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    },
+    {
+      "name": "n-eicosane",
+      "Tc_K": 768,
+      "Tc_source": "Ambrose and Tsonopoulos (1995), as listed by NIST",
+      "Tc_printed_plus_minus_K": 8,
+      "Pc_bar": 10.7,
+      "Pc_printed_TRC_uncertainty_bar": 0.4,
+      "nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C112958&Mask=4",
+      "Tc_nist_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C112958&Type=TC&Units=SI",
+      "Pc_source": "NIST WebBook; selected Nikitin, Pavlov, et al., 1994 row",
+      "omega_value": 0.9065,
+      "omega_source": "Passut and Danner (1973), via chemicals 1.5.2"
+    }
+  ],
+  "notes": [
+    "Historical HEOS coverage audit is unchanged; seven gaps are now covered with other explicitly selected sources.",
+    "Null numeric uncertainty does not mean zero uncertainty. Source uncertainty annotations have unspecified conventions and are retained in notes.",
+    "No experimental flash validation, kij fitting or solid-phase model added."
+  ]
+}

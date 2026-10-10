@@ -1,4 +1,4 @@
-"""Build the selected central dataset from chemicals 1.5.2."""
+"""Build the explicit HEOS and reviewed NIST/PD central dataset."""
 
 import json
 import sys
@@ -18,7 +18,34 @@ from petroflash.components import Component
 from petroflash.database import ComponentDatabase
 from petroflash.properties import DataKind, PropertyRecord
 # Dataset inventory is explicit; the historical coverage audit has its own scope.
-COMPONENTS = (('methane', '74-82-8'), ('ethane', '74-84-0'), ('propane', '74-98-6'), ('n-butane', '106-97-8'), ('isobutane', '75-28-5'), ('n-pentane', '109-66-0'), ('isopentane', '78-78-4'), ('n-hexane', '110-54-3'), ('nitrogen', '7727-37-9'), ('carbon dioxide', '124-38-9'), ('hydrogen sulfide', '7783-06-4'), ('water', '7732-18-5'), ('n-heptane', '142-82-5'), ('n-octane', '111-65-9'), ('n-nonane', '111-84-2'), ('n-decane', '124-18-5'), ('n-undecane', '1120-21-4'), ('n-dodecane', '112-40-3'), ('n-hexadecane', '544-76-3'))
+COMPONENTS = (
+    ('methane', '74-82-8'),
+    ('ethane', '74-84-0'),
+    ('propane', '74-98-6'),
+    ('n-butane', '106-97-8'),
+    ('isobutane', '75-28-5'),
+    ('n-pentane', '109-66-0'),
+    ('isopentane', '78-78-4'),
+    ('n-hexane', '110-54-3'),
+    ('nitrogen', '7727-37-9'),
+    ('carbon dioxide', '124-38-9'),
+    ('hydrogen sulfide', '7783-06-4'),
+    ('water', '7732-18-5'),
+    ('n-heptane', '142-82-5'),
+    ('n-octane', '111-65-9'),
+    ('n-nonane', '111-84-2'),
+    ('n-decane', '124-18-5'),
+    ('n-undecane', '1120-21-4'),
+    ('n-dodecane', '112-40-3'),
+    ('n-hexadecane', '544-76-3'),
+    ('n-tridecane', '629-50-5'),
+    ('n-tetradecane', '629-59-4'),
+    ('n-pentadecane', '629-62-9'),
+    ('n-heptadecane', '629-78-7'),
+    ('n-octadecane', '593-45-3'),
+    ('n-nonadecane', '629-92-5'),
+    ('n-eicosane', '112-95-8'),
+)
 
 
 def record(value, unit, method, reference, notes):
@@ -37,6 +64,21 @@ def record(value, unit, method, reference, notes):
 
 
 def build_component(name, cas_number):
+    # Reviewed static source records, including per-property provenance.
+    supplement = json.loads((ROOT / "data" / "component-supplement-nist-pd.json").read_text(encoding="utf-8-sig"))
+    matches = [c for c in supplement["components"] if c["cas_number"] == cas_number]
+    if len(matches) > 1:
+        raise ValueError(f"Duplicate supplement CAS: {cas_number}")
+    if matches:
+        raw = matches[0]
+        if raw["name"] != name:
+            raise ValueError(f"Supplement identity mismatch: {cas_number}")
+        records = {}
+        for field in ("critical_temperature", "critical_pressure", "acentric_factor", "molar_mass"):
+            item = dict(raw[field])
+            item["data_kind"] = DataKind(item["data_kind"])
+            records[field] = PropertyRecord(**item)
+        return Component(name=name, cas_number=cas_number, formula=raw["formula"], **records)
     metadata = search_chemical(cas_number)
 
     if metadata.CASs != cas_number:
@@ -95,10 +137,9 @@ def main():
 
     document = {
         "schema_version": 1,
-        "dataset_version": "0.4.0",
+        "dataset_version": "0.5.0",
         "description": (
-            "19 components from chemicals 1.5.2: "
-            "HEOS Tc/Pc/omega and metadata molar mass; no fallback."
+            '26 components: previous HEOS records preserved; seven remaining C13-C20 n-alkanes use explicitly selected NIST Tc/Pc rows, PD omega via chemicals 1.5.2, and metadata molar masses. No automatic fallback.'
         ),
         "components": [asdict(component) for component in components],
     }

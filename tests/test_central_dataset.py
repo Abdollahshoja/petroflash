@@ -29,8 +29,19 @@ EXPECTED_COMPONENTS = {
     "n-undecane": "1120-21-4",
     "n-dodecane": "112-40-3",
     "n-hexadecane": "544-76-3",
+    "n-tridecane": "629-50-5",
+    "n-tetradecane": "629-59-4",
+    "n-pentadecane": "629-62-9",
+    "n-heptadecane": "629-78-7",
+    "n-octadecane": "593-45-3",
+    "n-nonadecane": "629-92-5",
+    "n-eicosane": "112-95-8",
+
 
 }
+
+
+MULTISOURCE_NAMES = {'n-pentadecane', 'n-tridecane', 'n-tetradecane', 'n-octadecane', 'n-nonadecane', 'n-heptadecane', 'n-eicosane'}
 
 
 class TestCentralDataset(unittest.TestCase):
@@ -43,8 +54,8 @@ class TestCentralDataset(unittest.TestCase):
         )
 
     def test_dataset_identity_and_inventory(self):
-        self.assertEqual(self.db.dataset_version, "0.4.0")
-        self.assertEqual(len(self.db), 19)
+        self.assertEqual(self.db.dataset_version, "0.5.0")
+        self.assertEqual(len(self.db), 26)
         self.assertEqual(set(self.db.names()), set(EXPECTED_COMPONENTS))
 
         for name, cas_number in EXPECTED_COMPONENTS.items():
@@ -65,8 +76,16 @@ class TestCentralDataset(unittest.TestCase):
             for field in eos_fields:
                 with self.subTest(name=name, field=field):
                     record = getattr(component, field)
-                    self.assertEqual(record.source, "chemicals 1.5.2")
-                    self.assertEqual(record.method, "HEOS")
+                    if name in MULTISOURCE_NAMES:
+                        if field == "acentric_factor":
+                            self.assertEqual(record.method, "PD")
+                            self.assertEqual(record.source, "Passut and Danner (1973), via chemicals 1.5.2")
+                        else:
+                            self.assertEqual(record.source, "NIST Chemistry WebBook, SRD 69")
+                            self.assertIn("NIST WebBook; selected", record.method)
+                    else:
+                        self.assertEqual(record.source, "chemicals 1.5.2")
+                        self.assertEqual(record.method, "HEOS")
 
             with self.subTest(name=name, field="molar_mass"):
                 self.assertEqual(

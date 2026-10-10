@@ -38,7 +38,8 @@ class TestDatasetC11C20(unittest.TestCase):
         self.assertEqual([r['carbon_number'] for r in rows if r['included']],[11,12,16])
         names={c['name'] for c in self.data['components']}
         for r in rows:
-            self.assertEqual(r['name'] in names,r['included'])
+            if r['included']: self.assertIn(r['name'], names)
+            # Excluded-from-HEOS no longer means absent from the multisource bank.
             if r['included']:self.assertEqual(r['missing_fields'],[])
             else:
                 self.assertEqual(len(r['missing_fields']),3)
