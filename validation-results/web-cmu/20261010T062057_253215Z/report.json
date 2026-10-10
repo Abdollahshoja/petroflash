@@ -1,0 +1,443 @@
+{
+  "source": "https://kitchingroup.cheme.cmu.edu/differentiable-flowsheets/docs/unit-operations-chemical.html",
+  "access_date": "2026-10-10",
+  "source_has_numerical_answer": false,
+  "description": "Documented EOSFlash feed; independently computed answers, not quoted source outputs.",
+  "assumptions": [
+    "All kij explicitly zero",
+    "No volume translation",
+    "PR1976 alpha",
+    "Same printed critical properties in both solvers"
+  ],
+  "inputs": {
+    "names": [
+      "methane",
+      "ethane",
+      "propane"
+    ],
+    "T_K": 250.0,
+    "P_Pa": 2000000.0,
+    "feed": [
+      0.4,
+      0.3,
+      0.3
+    ],
+    "Tcs": [
+      190.6,
+      305.4,
+      369.8
+    ],
+    "Pcs": [
+      4600000.0,
+      4900000.0,
+      4200000.0
+    ],
+    "omegas": [
+      0.011,
+      0.099,
+      0.152
+    ],
+    "kij": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ]
+  },
+  "thermo_version": "0.6.0",
+  "python": "3.11.1 (tags/v3.11.1:a7a450f, Dec  6 2022, 19:58:39) [MSC v.1934 64 bit (AMD64)]",
+  "engine": {
+    "status": "two_phase",
+    "message": "Two-phase solution passed local checks; global stability is not certified.",
+    "feed_stability": {
+      "status": "unstable",
+      "reference_z": 0.7062642416873564,
+      "minimum_tpd": -0.7134710654743168,
+      "witness_composition": [
+        0.038675466338106416,
+        0.19318067436337974,
+        0.7681438592985138
+      ],
+      "starts": [
+        {
+          "label": "feed",
+          "converged": true,
+          "iterations": 1,
+          "minimum_tpd": 0.0,
+          "witness_composition": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "stationarity_residual": 0.0,
+          "reason": "projected stationarity converged"
+        },
+        {
+          "label": "Wilson vapor-like",
+          "converged": true,
+          "iterations": 38,
+          "minimum_tpd": -5.928673695243549e-17,
+          "witness_composition": [
+            0.4000000026673999,
+            0.29999999967908103,
+            0.2999999976535191
+          ],
+          "stationarity_residual": 6.330886777704831e-09,
+          "reason": "projected stationarity converged"
+        },
+        {
+          "label": "Wilson liquid-like",
+          "converged": true,
+          "iterations": 29,
+          "minimum_tpd": -0.7134710654743168,
+          "witness_composition": [
+            0.038675466338106416,
+            0.19318067436337974,
+            0.7681438592985138
+          ],
+          "stationarity_residual": 7.2362779102164154e-09,
+          "reason": "projected stationarity converged"
+        },
+        {
+          "label": "rich in methane",
+          "converged": true,
+          "iterations": 37,
+          "minimum_tpd": -1.732066985439593e-17,
+          "witness_composition": [
+            0.4000000062186916,
+            0.29999999924416165,
+            0.2999999945371467
+          ],
+          "stationarity_residual": 8.773792371708265e-09,
+          "reason": "projected stationarity converged"
+        },
+        {
+          "label": "rich in ethane",
+          "converged": true,
+          "iterations": 31,
+          "minimum_tpd": -0.7134710654743167,
+          "witness_composition": [
+            0.038675467236391266,
+            0.19318067607388234,
+            0.7681438566897264
+          ],
+          "stationarity_residual": 8.43438530129248e-09,
+          "reason": "projected stationarity converged"
+        },
+        {
+          "label": "rich in propane",
+          "converged": true,
+          "iterations": 29,
+          "minimum_tpd": -0.7134710654743167,
+          "witness_composition": [
+            0.03867546622441088,
+            0.19318066946252907,
+            0.76814386431306
+          ],
+          "stationarity_residual": 7.375664745623567e-09,
+          "reason": "projected stationarity converged"
+        }
+      ],
+      "tpd_tolerance": 1e-08
+    },
+    "beta": 0.5110807401666193,
+    "liquid_composition": [
+      0.1315060519410455,
+      0.34869683124078404,
+      0.5197971168181715
+    ],
+    "vapor_composition": [
+      0.6568515149131422,
+      0.25341476049613376,
+      0.0897337245907229
+    ],
+    "liquid_z": 0.06534264360787997,
+    "vapor_z": 0.8448872701834422,
+    "fugacity_residual": 8.178373978040554e-09,
+    "material_residual": 2.7755575615628914e-17,
+    "normalization_residual": 1.1102230246251565e-15,
+    "gibbs_change_rt": -0.19465557988408416,
+    "iterations": 8,
+    "phase_stability": [
+      {
+        "status": "no_negative_tpd_found",
+        "reference_z": 0.06534264360787997,
+        "minimum_tpd": -1.636352509778559e-15,
+        "witness_composition": [
+          0.13150605046146624,
+          0.3486968308309841,
+          0.5197971187075496
+        ],
+        "starts": [
+          {
+            "label": "feed",
+            "converged": true,
+            "iterations": 1,
+            "minimum_tpd": 0.0,
+            "witness_composition": [
+              0.1315060519410455,
+              0.34869683124078404,
+              0.5197971168181715
+            ],
+            "stationarity_residual": 0.0,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "Wilson vapor-like",
+            "converged": true,
+            "iterations": 30,
+            "minimum_tpd": 5.337194905998521e-09,
+            "witness_composition": [
+              0.6568515147669886,
+              0.2534147607236986,
+              0.08973372450931284
+            ],
+            "stationarity_residual": 8.887948447951912e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "Wilson liquid-like",
+            "converged": true,
+            "iterations": 34,
+            "minimum_tpd": -1.636352509778559e-15,
+            "witness_composition": [
+              0.13150605046146624,
+              0.3486968308309841,
+              0.5197971187075496
+            ],
+            "stationarity_residual": 5.57681722972024e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in methane",
+            "converged": true,
+            "iterations": 31,
+            "minimum_tpd": 5.337194939367769e-09,
+            "witness_composition": [
+              0.6568515150145781,
+              0.2534147604349127,
+              0.08973372455050926
+            ],
+            "stationarity_residual": 8.375962911325633e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in ethane",
+            "converged": true,
+            "iterations": 31,
+            "minimum_tpd": -1.1316494749331309e-15,
+            "witness_composition": [
+              0.1315060547289327,
+              0.3486968349293815,
+              0.5197971103416857
+            ],
+            "stationarity_residual": 5.878644978154189e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in propane",
+            "converged": true,
+            "iterations": 33,
+            "minimum_tpd": -1.535360877408246e-15,
+            "witness_composition": [
+              0.1315060498318145,
+              0.3486968304681107,
+              0.5197971197000748
+            ],
+            "stationarity_residual": 7.948289427257822e-09,
+            "reason": "projected stationarity converged"
+          }
+        ],
+        "tpd_tolerance": 1e-08
+      },
+      {
+        "status": "no_negative_tpd_found",
+        "reference_z": 0.8448872701834422,
+        "minimum_tpd": 0.0,
+        "witness_composition": [
+          0.6568515149131422,
+          0.25341476049613376,
+          0.0897337245907229
+        ],
+        "starts": [
+          {
+            "label": "feed",
+            "converged": true,
+            "iterations": 1,
+            "minimum_tpd": 0.0,
+            "witness_composition": [
+              0.6568515149131422,
+              0.25341476049613376,
+              0.0897337245907229
+            ],
+            "stationarity_residual": 0.0,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "Wilson vapor-like",
+            "converged": true,
+            "iterations": 33,
+            "minimum_tpd": 1.0215309258128577e-15,
+            "witness_composition": [
+              0.6568515188597847,
+              0.25341475839165634,
+              0.08973372274855898
+            ],
+            "stationarity_residual": 5.455880298401921e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "Wilson liquid-like",
+            "converged": true,
+            "iterations": 31,
+            "minimum_tpd": 1.2663948094997108e-11,
+            "witness_composition": [
+              0.13150605084910832,
+              0.3486968309277367,
+              0.519797118223155
+            ],
+            "stationarity_residual": 8.591272354493601e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in methane",
+            "converged": true,
+            "iterations": 32,
+            "minimum_tpd": 9.418239539816856e-16,
+            "witness_composition": [
+              0.6568515210378985,
+              0.25341475702551514,
+              0.08973372193658638
+            ],
+            "stationarity_residual": 7.886146062523666e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in ethane",
+            "converged": true,
+            "iterations": 34,
+            "minimum_tpd": 1.2662339196574068e-11,
+            "witness_composition": [
+              0.131506053998833,
+              0.3486968318898432,
+              0.5197971141113238
+            ],
+            "stationarity_residual": 5.981225684506739e-09,
+            "reason": "projected stationarity converged"
+          },
+          {
+            "label": "rich in propane",
+            "converged": true,
+            "iterations": 32,
+            "minimum_tpd": 1.2663176980987567e-11,
+            "witness_composition": [
+              0.1315060491200472,
+              0.3486968292545128,
+              0.51979712162544
+            ],
+            "stationarity_residual": 8.313417893415416e-09,
+            "reason": "projected stationarity converged"
+          }
+        ],
+        "tpd_tolerance": 1e-08
+      }
+    ],
+    "attempts": [],
+    "gibbs_resolution_rt": 6.675176884374926e-14,
+    "alpha_model": "PR1976"
+  },
+  "comparisons": [
+    {
+      "label": "thermo_default",
+      "coefficients": [
+        0.4572355289213822,
+        0.07779607390388846
+      ],
+      "phase_count": 2,
+      "beta": 0.5110400104445743,
+      "liquid_composition": [
+        0.1315110294959216,
+        0.34870743194117504,
+        0.5197815385629035
+      ],
+      "vapor_composition": [
+        0.6568886222807,
+        0.25339702386020607,
+        0.08971435385909383
+      ],
+      "liquid_z": 0.06533754182734434,
+      "vapor_z": 0.8448988310797361,
+      "differences": {
+        "beta": 4.0729722045051986e-05,
+        "liquid_z": 5.1017805356295964e-06,
+        "vapor_z": 1.1560896293838496e-05,
+        "liquid_composition": 1.5578255267989505e-05,
+        "vapor_composition": 3.71073675577982e-05
+      },
+      "fugacity_residual": 2.2027468740343434e-10,
+      "material_residual": 5.551115123125783e-17,
+      "verdict": "MODEL_COEFFICIENT_SENSITIVITY"
+    },
+    {
+      "label": "thermo_aligned_coefficients",
+      "coefficients": [
+        0.45724,
+        0.0778
+      ],
+      "phase_count": 2,
+      "beta": 0.5110807389030703,
+      "liquid_composition": [
+        0.13150605312122574,
+        0.34869683122628875,
+        0.5197971156524855
+      ],
+      "vapor_composition": [
+        0.6568515150829529,
+        0.2534147602744339,
+        0.08973372464261326
+      ],
+      "liquid_z": 0.06534264359697922,
+      "vapor_z": 0.8448872702125564,
+      "differences": {
+        "beta": 1.2635490431733842e-09,
+        "liquid_z": 1.0900752522857715e-11,
+        "vapor_z": 2.911415553086272e-11,
+        "liquid_composition": 1.1801802313193832e-09,
+        "vapor_composition": 2.216998806758852e-10
+      },
+      "fugacity_residual": 2.2036383831233139e-10,
+      "material_residual": 5.551115123125783e-17,
+      "pure_parameter_relative_error": 2.220446049250313e-16,
+      "b_relative_error": 0.0,
+      "verdict": "PASS"
+    }
+  ],
+  "loaded_source_hashes": {
+    "petroflash.properties": "74184670d12153823b149b36f4bd883d4b9351a198e4060fe86aacb6bf7c6c41",
+    "petroflash.components": "a9c564cf5930566e5d0d127f86162bca2b180fda6d9164745bb1a908f38e8c57",
+    "petroflash.database": "d7b41a24027d75281a100db8065a45294eec39cbc9b32c66fe5e804c2a6b3abb",
+    "petroflash.mixture": "b494b063bc7ff999cc83e2a0f2ec32a59401001fe27ab9c84ef1f6b2e198a82a",
+    "petroflash.pr_pure": "ca5b433f2155702d7c75bb134cf928185f8dd4e0c2c6f97e97772473120179a8",
+    "petroflash.pr_mixing": "9fe0f22519110f4864f3cf23d1fff11e2988b9f0f1352195052eeb95ae5d200d",
+    "petroflash.pr_roots": "4623f5a7d8c5d37e2be2eaa7bd3b8fe345570918fa19fbd9008e7fd4e03c576c",
+    "petroflash.pr_fugacity": "c186833c9cd107b0875641772b786596a907ef9129bb075c1d9f0a260448d714",
+    "petroflash.pr_phase": "560f8100b3e12ff97e430fbd8a7fa6db3d211caa6e5a3ec7c8d1354d6c2be3bc",
+    "petroflash.rachford_rice": "d4e1d1aa0d0525876edb18c90d3f39ac38bd687a629a024fc2ba36563dfa120a",
+    "petroflash.tpd": "476426702b8458fb26c5784bdf35213d18922b2787f02b05b4e36a7ace675c22",
+    "petroflash.stability": "e15fc4402b28a7c05505590c38613106ca6a76ff364b1399c297e4112ded6362",
+    "petroflash.flash": "ea2a2e0d188c356a22662338f745e415d71ec878516873a63c124572c55a3278",
+    "petroflash.conditions": "153deb7b8734d95a60b17650279bbf2da8d4cb849cea9ab25c5be461a9d017eb"
+  },
+  "tool_sha256": "7bc79d4f8d09c21a77810632fe72c2d729a1b0d9be3cda74efa80e0965f3e2b6"
+}
