@@ -12,6 +12,9 @@ dependencies = []
 [project.optional-dependencies]
 data-build = ["chemicals==1.5.2"]
 
+[project.gui-scripts]
+petroflash-gui = "petroflash.gui:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["petroflash*"]
