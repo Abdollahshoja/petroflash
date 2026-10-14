@@ -69,8 +69,8 @@ def pr_mixture_parameters(*, mole_fractions, a_t, b, kij,
     t = _number(temperature_k, "temperature_k", positive=True)
     p = _number(pressure_pa, "pressure_pa", positive=True)
     x = tuple(_number(v, "mole_fraction") for v in mole_fractions)
-    aa_t = tuple(a_t)
-    bb_t = tuple(b)
+    aa_t = tuple(_number(v, "a_t") for v in a_t)
+    bb_t = tuple(_number(v, "b", positive=True) for v in b)
     n = len(x)
     if not n or len(aa_t) != n or len(bb_t) != n:
         raise ValueError("Nonempty composition, a_t and b must have equal lengths.")
