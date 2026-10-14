@@ -7,7 +7,7 @@ All admissible candidates are retained for later branch-aware calculations.
 from dataclasses import dataclass
 from functools import lru_cache
 
-from .pr_fugacity import PRFugacity, pr_log_fugacity
+from .pr_fugacity import PRFugacity, _pr_log_fugacity_prevalidated
 from .pr_mixing import PRMixtureParameters, pr_mixture_parameters
 from .pr_pure import _number, component_pr_parameters
 from .pr_roots import PRRoots, solve_pr_roots
@@ -36,8 +36,9 @@ def _evaluate_pr_phase_cached(mole_fractions, a_t, b, kij, temperature_k, pressu
                 temperature_k=temperature_k, pressure_pa=pressure_pa)
     parameters = pr_mixture_parameters(**args)
     roots = solve_pr_roots(A=parameters.A, B=parameters.B)
-    candidates = tuple(pr_log_fugacity(**args, z=z, parameters=parameters)
-                       for z in roots.admissible_roots)
+    candidates = tuple(_pr_log_fugacity_prevalidated(
+        mole_fractions=mole_fractions, b=b, temperature_k=temperature_k,
+        z=z, parameters=parameters) for z in roots.admissible_roots)
     minimum = min(state.g_residual_rt for state in candidates)
     preferred = tuple(i for i, state in enumerate(candidates)
                       if state.g_residual_rt-minimum <= tol)
@@ -74,3 +75,4 @@ def evaluate_mixture_pr_phase(mixture, conditions, *, kij, gibbs_tolerance=1e-10
         a_t=tuple(q.a_t for q in pure), b=tuple(q.b for q in pure), kij=kij,
         temperature_k=conditions.temperature_k, pressure_pa=conditions.pressure_pa,
         gibbs_tolerance=gibbs_tolerance)
+

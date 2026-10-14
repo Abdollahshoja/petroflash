@@ -7,7 +7,7 @@ fugacity use f_i = x_i * phi_i * absolute_pressure, not phi_i * pressure.
 from dataclasses import dataclass
 from math import fsum, isfinite, log, log1p, sqrt
 
-from .pr_mixing import pr_mixture_parameters
+from .pr_mixing import PRMixtureParameters, pr_mixture_parameters
 from .pr_pure import R, _number, component_pr_parameters
 from .pr_roots import pr_cubic_residual
 
@@ -23,24 +23,34 @@ class PRFugacity:
 
 def pr_log_fugacity(*, mole_fractions, a_t, b, kij,
                     temperature_k, pressure_pa, z, parameters=None):
-    """Calculate ln(phi) at a root of the same phase's PR cubic.
+    """Validate inputs and supplied mixture parameters before evaluating ln(phi).
 
-    Dimensional a_t values must have been evaluated at temperature_k.
-    Components with zero fraction retain finite infinite-dilution ln(phi).
-    Logarithms are not clipped; nonphysical roots raise ValueError.
-
-    If `parameters` is supplied, it must be a PRMixtureParameters built from
-    the same mole_fractions, a_t, b, kij, temperature_k and pressure_pa.
-    Passing it skips a redundant internal call to pr_mixture_parameters.
+    Supplied parameters must exactly match the current mixture calculation.
+    Internal phase evaluation uses a separate prevalidated fast path.
     """
     x, aa, bb = tuple(mole_fractions), tuple(a_t), tuple(b)
+    kk = tuple(tuple(row) for row in kij)
+    q = pr_mixture_parameters(mole_fractions=x, a_t=aa, b=bb, kij=kk,
+                             temperature_k=temperature_k, pressure_pa=pressure_pa)
+    if parameters is not None:
+        if not isinstance(parameters, PRMixtureParameters):
+            raise TypeError('parameters must be PRMixtureParameters.')
+        if parameters != q:
+            raise ValueError('parameters do not match the current composition and TP.')
+    return _pr_log_fugacity_prevalidated(
+        mole_fractions=x, b=bb, temperature_k=temperature_k, z=z, parameters=q)
+
+
+def _pr_log_fugacity_prevalidated(*, mole_fractions, b, temperature_k,
+                                z, parameters):
+    """Internal path: caller supplies parameters from this exact phase state.
+
+    Preserve root and numerical checks while avoiding repeated mixing.
+    """
+    x, bb = tuple(mole_fractions), tuple(b)
     t = _number(temperature_k, 'temperature_k', positive=True)
     z = _number(z, 'z')
-    if parameters is None:
-        q = pr_mixture_parameters(mole_fractions=x, a_t=aa, b=bb, kij=kij,
-                                 temperature_k=t, pressure_pa=pressure_pa)
-    else:
-        q = parameters
+    q = parameters
     if z <= q.B:
         raise ValueError('Fugacity requires Z>B.')
     # Scale the polynomial check in the same way as the root module.
@@ -73,3 +83,4 @@ def mixture_pr_log_fugacity(mixture, conditions, *, kij, z):
     return pr_log_fugacity(mole_fractions=mixture.mole_fractions,
         a_t=tuple(q.a_t for q in pure), b=tuple(q.b for q in pure), kij=kij,
         temperature_k=conditions.temperature_k, pressure_pa=conditions.pressure_pa, z=z)
+
