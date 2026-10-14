@@ -9,7 +9,8 @@ from math import exp, fsum, isfinite, log
 
 from .pr_phase import evaluate_pr_phase
 from .pr_pure import _number, component_pr_parameters, validate_alpha_model
-from .tpd import _composition, tangent_plane_distance
+from .tpd import (_composition, tangent_plane_distance,
+                   tangent_plane_distance_unchecked)
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,9 +121,9 @@ def search_pr_stability(mixture, conditions, *, kij, max_iterations=200,
                 # Exact minimum for the trial Gibbs envelope; retain all roots
                 # in the phase evaluator, but use the lowest here.
                 state = min(trial.candidates, key=lambda q: q.g_residual_rt)
-                value = tangent_plane_distance(reference_mole_fractions=z,
-                    trial_mole_fractions=w, reference_ln_phi=ref.ln_phi,
-                    trial_ln_phi=state.ln_phi)
+                value = tangent_plane_distance_unchecked(
+                    reference_mole_fractions=z, trial_mole_fractions=w,
+                    reference_ln_phi=ref.ln_phi, trial_ln_phi=state.ln_phi)
                 if minimum is None or value < minimum:
                     minimum, witness = value, w
                 gradients = tuple(log(current[j])+state.ln_phi[i]-d[j]

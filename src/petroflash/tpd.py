@@ -54,6 +54,23 @@ def tangent_plane_distance(*, reference_mole_fractions, trial_mole_fractions,
     return result
 
 
+def tangent_plane_distance_unchecked(*, reference_mole_fractions,
+                                       trial_mole_fractions,
+                                       reference_ln_phi, trial_ln_phi):
+    """Same formula as tangent_plane_distance, WITHOUT input validation.
+
+    Caller must guarantee: matching lengths, valid compositions summing to 1,
+    and that trial compositions respect zero-feed support. Used internally by
+    search_pr_stability where these conditions are already guaranteed by
+    _softmax-generated trial compositions and an evaluated reference.
+    """
+    return fsum(wi*(log(wi)-log(zi)+pi-ri)
+                for zi, wi, pi, ri in zip(reference_mole_fractions,
+                                          trial_mole_fractions,
+                                          trial_ln_phi,
+                                          reference_ln_phi) if wi > 0)
+
+
 @dataclass(frozen=True, slots=True)
 class PRTPDTrial:
     """TPD values for every admissible root at one specified trial composition."""

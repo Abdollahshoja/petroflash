@@ -57,15 +57,17 @@ def evaluate_pr_phase(*, mole_fractions, a_t, b, kij, temperature_k,
     tol = _number(gibbs_tolerance, 'gibbs_tolerance')
     if tol < 0:
         raise ValueError('gibbs_tolerance must be nonnegative.')
-    return _evaluate_pr_phase_cached(
-        tuple(mole_fractions),
-        tuple(a_t),
-        tuple(b),
-        tuple(tuple(row) for row in kij),
-        temperature_k,
-        pressure_pa,
-        tol,
-    )
+    # Fast path: avoid rebuilding already-hashable tuples. The kij matrix in
+    # particular is typically the same tuple-of-tuples across every stability
+    # iteration, and rebuilding it forces a fresh O(n^2) hash on every call.
+    mf = mole_fractions if isinstance(mole_fractions, tuple) else tuple(mole_fractions)
+    aa = a_t if isinstance(a_t, tuple) else tuple(a_t)
+    bb = b if isinstance(b, tuple) else tuple(b)
+    if isinstance(kij, tuple) and all(isinstance(row, tuple) for row in kij):
+        kk = kij
+    else:
+        kk = tuple(tuple(row) for row in kij)
+    return _evaluate_pr_phase_cached(mf, aa, bb, kk, temperature_k, pressure_pa, tol)
 
 
 def evaluate_mixture_pr_phase(mixture, conditions, *, kij, gibbs_tolerance=1e-10):
