@@ -5,6 +5,7 @@ All admissible candidates are retained for later branch-aware calculations.
 """
 
 from dataclasses import dataclass
+from functools import lru_cache
 
 from .pr_fugacity import PRFugacity, pr_log_fugacity
 from .pr_mixing import PRMixtureParameters, pr_mixture_parameters
@@ -28,6 +29,21 @@ class PRPhaseEvaluation:
         return tuple(self.candidates[i] for i in self.preferred_indices)
 
 
+@lru_cache(maxsize=2048)
+def _evaluate_pr_phase_cached(mole_fractions, a_t, b, kij, temperature_k, pressure_pa, tol):
+    """Cached core of evaluate_pr_phase; all inputs must be hashable."""
+    args = dict(mole_fractions=mole_fractions, a_t=a_t, b=b, kij=kij,
+                temperature_k=temperature_k, pressure_pa=pressure_pa)
+    parameters = pr_mixture_parameters(**args)
+    roots = solve_pr_roots(A=parameters.A, B=parameters.B)
+    candidates = tuple(pr_log_fugacity(**args, z=z, parameters=parameters)
+                       for z in roots.admissible_roots)
+    minimum = min(state.g_residual_rt for state in candidates)
+    preferred = tuple(i for i, state in enumerate(candidates)
+                      if state.g_residual_rt-minimum <= tol)
+    return PRPhaseEvaluation(parameters, roots, candidates, minimum, preferred, tol)
+
+
 def evaluate_pr_phase(*, mole_fractions, a_t, b, kij, temperature_k,
                       pressure_pa, gibbs_tolerance=1e-10):
     """Evaluate all Z>B roots and identify minimum fixed-composition Gibbs.
@@ -41,17 +57,15 @@ def evaluate_pr_phase(*, mole_fractions, a_t, b, kij, temperature_k,
     tol = _number(gibbs_tolerance, 'gibbs_tolerance')
     if tol < 0:
         raise ValueError('gibbs_tolerance must be nonnegative.')
-    # Freeze iterables once: generators must work across every root evaluation.
-    args = dict(mole_fractions=tuple(mole_fractions), a_t=tuple(a_t), b=tuple(b),
-                kij=tuple(tuple(row) for row in kij),
-                temperature_k=temperature_k, pressure_pa=pressure_pa)
-    parameters = pr_mixture_parameters(**args)
-    roots = solve_pr_roots(A=parameters.A, B=parameters.B)
-    candidates = tuple(pr_log_fugacity(**args, z=z) for z in roots.admissible_roots)
-    minimum = min(state.g_residual_rt for state in candidates)
-    preferred = tuple(i for i, state in enumerate(candidates)
-                      if state.g_residual_rt-minimum <= tol)
-    return PRPhaseEvaluation(parameters, roots, candidates, minimum, preferred, tol)
+    return _evaluate_pr_phase_cached(
+        tuple(mole_fractions),
+        tuple(a_t),
+        tuple(b),
+        tuple(tuple(row) for row in kij),
+        temperature_k,
+        pressure_pa,
+        tol,
+    )
 
 
 def evaluate_mixture_pr_phase(mixture, conditions, *, kij, gibbs_tolerance=1e-10):

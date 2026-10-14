@@ -22,18 +22,25 @@ class PRFugacity:
 
 
 def pr_log_fugacity(*, mole_fractions, a_t, b, kij,
-                    temperature_k, pressure_pa, z):
+                    temperature_k, pressure_pa, z, parameters=None):
     """Calculate ln(phi) at a root of the same phase's PR cubic.
 
     Dimensional a_t values must have been evaluated at temperature_k.
     Components with zero fraction retain finite infinite-dilution ln(phi).
     Logarithms are not clipped; nonphysical roots raise ValueError.
+
+    If `parameters` is supplied, it must be a PRMixtureParameters built from
+    the same mole_fractions, a_t, b, kij, temperature_k and pressure_pa.
+    Passing it skips a redundant internal call to pr_mixture_parameters.
     """
     x, aa, bb = tuple(mole_fractions), tuple(a_t), tuple(b)
     t = _number(temperature_k, 'temperature_k', positive=True)
     z = _number(z, 'z')
-    q = pr_mixture_parameters(mole_fractions=x, a_t=aa, b=bb, kij=kij,
-                             temperature_k=t, pressure_pa=pressure_pa)
+    if parameters is None:
+        q = pr_mixture_parameters(mole_fractions=x, a_t=aa, b=bb, kij=kij,
+                                 temperature_k=t, pressure_pa=pressure_pa)
+    else:
+        q = parameters
     if z <= q.B:
         raise ValueError('Fugacity requires Z>B.')
     # Scale the polynomial check in the same way as the root module.
@@ -45,9 +52,7 @@ def pr_log_fugacity(*, mole_fractions, a_t, b, kij,
         raise ValueError('Z does not satisfy the cubic for this composition and TP.')
     try:
         s2 = sqrt(2.0)
-        # log1p avoids subtractive cancellation in the small-B limit.
         log_ratio = log1p(2*s2*q.B/(z+(1-s2)*q.B))
-        # A/B = a_m/(b_m R T); avoid division by a tiny B.
         attraction = q.a_m/(q.b_m*R*t) * log_ratio/(2*s2)
         log_z_minus_b = log1p((z-1)-q.B) if abs(z-1-q.B) < 0.5 else log(z-q.B)
         values = tuple(
